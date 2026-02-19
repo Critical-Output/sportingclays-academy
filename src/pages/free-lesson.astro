@@ -7,8 +7,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Watch a free sporting clays lesson from world champion Karen Miles. Learn the fundamentals that have won world championships."
 >
 
-  <section class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 sm:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative py-16 sm:py-24 overflow-hidden">
+    <img src="/images/hero/hero-coaching.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/85 to-slate-950/95"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         <!-- Left: Copy + Form -->
@@ -54,7 +56,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <!-- Right: Video Placeholder -->
-        <div class="relative aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 overflow-hidden group cursor-pointer">
+        <div class="relative aspect-video rounded-2xl border border-slate-700 overflow-hidden group cursor-pointer">
+          <img src="/images/thumbnails/laser-swing.jpg" alt="Free lesson preview — Three fundamentals every shooter must master" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/20 transition-colors"></div>
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="w-20 h-20 bg-amber-500/90 rounded-full flex items-center justify-center group-hover:bg-amber-400 transition-colors group-hover:scale-110 duration-300">
               <svg class="w-8 h-8 text-slate-950 ml-1" fill="currentColor" viewBox="0 0 24 24">

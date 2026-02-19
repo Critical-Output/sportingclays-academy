@@ -150,8 +150,10 @@ const courseSchema = {
         </div>
 
         <div class="relative">
-          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-6 flex items-end">
-            <div>
+          <div class="aspect-[4/3] rounded-2xl border border-slate-700 overflow-hidden relative">
+            <img src="/images/hero/hero-duo.jpg" alt="Karen Miles and Gebben Miles standing together on the shooting range" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
               <p class="text-white font-semibold text-lg">Karen Miles + Gebben Miles</p>
               <p class="text-slate-400 text-sm mt-1">Three-Time World Champion • 2026 Jack Links Cup Champion</p>
             </div>
@@ -173,7 +175,9 @@ const courseSchema = {
       <p class="text-slate-400 mb-8">
         Watch a preview lesson and experience how Karen and Gebben break down targets, technique, and strategy.
       </p>
-      <div class="relative aspect-video rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
+      <div class="relative aspect-video rounded-2xl border border-slate-700 overflow-hidden">
+        <img src="/images/thumbnails/laser-swing.jpg" alt="Video preview — Reading crossers under pressure with Karen and Gebben Miles" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-slate-950/40"></div>
         <div class="absolute inset-0 flex items-center justify-center">
           <button class="w-20 h-20 rounded-full bg-amber-500/90 hover:bg-amber-400 text-slate-950 flex items-center justify-center transition-colors">
             <svg class="w-8 h-8 ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
@@ -220,6 +224,8 @@ const courseSchema = {
           name="Karen Miles"
           initials="KM"
           title="Three-Time World Champion"
+          image="/images/instructors/coaching-wide.jpg"
+          imageAlt="Karen Miles coaching on the range"
           credentials={[
             '2024 World FITASC Championship Ladies Winner',
             'Six Consecutive NSCA Ladies Titles (2020–2025)',
@@ -231,6 +237,8 @@ const courseSchema = {
           name="Gebben Miles"
           initials="GM"
           title="World FITASC Champion"
+          image="/images/instructors/gebben-range.jpg"
+          imageAlt="Gebben Miles at the shooting station"
           credentials={[
             '2026 Jack Links Cup Champion',
             '2024 U.S. FITASC Grand Prix High Overall',
