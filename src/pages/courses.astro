@@ -1,121 +1,196 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CourseCard from '../components/CourseCard.astro';
 import CTASection from '../components/CTASection.astro';
 
-const courses = [
+const series = [
   {
-    title: 'Sporting Clays Fundamentals',
-    instructor: 'Karen Miles',
-    level: 'Beginner' as const,
-    lessons: '24 lessons',
-    description: 'Build a rock-solid foundation with proper stance, mount, swing, and follow-through. Karen breaks down the mechanics that have won her six consecutive national titles.',
-    initials: 'KM',
+    title: 'From the Range',
+    category: 'On-Range Instruction',
+    videoCount: '60+',
+    description: 'Real-time target breakdowns filmed on the range. Karen and Gebben analyze presentations, walk through hold points, and demonstrate technique on live stations.',
+    initials: 'FR',
+    accent: 'amber',
+    latest: 'New episode every week',
   },
   {
-    title: 'Advanced Target Reading',
-    instructor: 'Gebben Miles',
-    level: 'Intermediate' as const,
-    lessons: '18 lessons',
-    description: 'Master Gebben\'s systematic approach to reading any target presentation. Speed, angle, distance, and lead calculation demystified with on-range demonstrations.',
-    initials: 'GM',
+    title: 'Gebben Miles Basics',
+    category: 'Fundamentals',
+    videoCount: '35+',
+    description: 'Gebben\'s complete foundation series covering stance, mount, swing mechanics, follow-through, and the core visual process that produces consistent breaks.',
+    initials: 'GMB',
+    accent: 'blue',
+    latest: 'Complete series',
   },
   {
-    title: 'Competition Strategy Masterclass',
-    instructor: 'Karen & Gebben Miles',
-    level: 'Advanced' as const,
-    lessons: '12 lessons',
-    description: 'The tactics that win major championships. Course management, pressure handling, squad dynamics, and the strategies Karen and Gebben use at FITASC and NSCA events.',
-    initials: 'K&G',
+    title: 'Quiet Dust Series',
+    category: 'Advanced Technique',
+    videoCount: '40+',
+    description: 'Deep dives into advanced target reading, lead management, and the nuanced adjustments that separate good shooters from great ones.',
+    initials: 'QDS',
+    accent: 'emerald',
+    latest: 'Ongoing',
   },
   {
-    title: 'The Mental Game',
-    instructor: 'Karen Miles',
-    level: 'All Levels' as const,
-    lessons: '8 lessons',
-    description: 'Focus, confidence, and composure under pressure. Karen shares the mental frameworks that have carried her to three world championship titles and counting.',
-    initials: 'KM',
+    title: 'Fanizzi Series',
+    category: 'Competition Analysis',
+    videoCount: '30+',
+    description: 'Station-by-station breakdowns of major competition courses. See how world champions read and attack tournament-level presentations.',
+    initials: 'FS',
+    accent: 'violet',
+    latest: 'Updated after major events',
   },
   {
-    title: 'Equipment & Gun Fit Guide',
-    instructor: 'Gebben Miles',
-    level: 'All Levels' as const,
-    lessons: '6 lessons',
-    description: 'Choke selection, ammunition choices, gun fit essentials, and gear setup. Gebben covers the equipment decisions that make a measurable difference in your scores.',
-    initials: 'GM',
+    title: 'Homeschool',
+    category: 'Drills & Practice',
+    videoCount: '25+',
+    description: 'Structured practice sessions you can take to the range. Specific drills for crossers, teal, rabbits, chandelles, and more — with clear benchmarks.',
+    initials: 'HS',
+    accent: 'rose',
+    latest: 'Ongoing',
   },
   {
-    title: 'Weekly Live Analysis',
-    instructor: 'Karen & Gebben Miles',
-    level: 'Members Only' as const,
-    lessons: 'Ongoing weekly sessions',
-    description: 'Live video analysis sessions where Karen and Gebben review member-submitted shooting footage, answer questions, and break down tournament performances in real time.',
+    title: 'Webinars & Live Q&A',
+    category: 'Interactive Sessions',
+    videoCount: '30+',
+    description: 'Recorded live sessions where Karen and Gebben answer member questions, review submitted footage, and discuss strategy in depth.',
     initials: 'LIVE',
+    accent: 'cyan',
+    latest: 'Monthly live sessions',
+  },
+  {
+    title: 'Competition Recaps',
+    category: 'Tournament Coverage',
+    videoCount: '20+',
+    description: 'Post-tournament analysis from NSCA, FITASC, and major shoots. What worked, what didn\'t, and what you can take to your next event.',
+    initials: 'CR',
+    accent: 'orange',
+    latest: 'After major events',
   },
 ];
 
-const levels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+const accentMap: Record<string, { bg: string; text: string; border: string }> = {
+  amber: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20' },
+  blue: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
+  emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20' },
+  violet: { bg: 'bg-violet-500/10', text: 'text-violet-400', border: 'border-violet-500/20' },
+  rose: { bg: 'bg-rose-500/10', text: 'text-rose-400', border: 'border-rose-500/20' },
+  cyan: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20' },
+  orange: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20' },
+};
 ---
 
 <BaseLayout
-  title="Courses | Sporting Clays Academy"
-  description="Browse our complete sporting clays course catalog. From fundamentals to competition strategy, learn from world champions Karen and Gebben Miles."
+  title="Video Library | Sporting Clays Academy"
+  description="Browse 240+ instructional videos across 7 series from world champions Karen and Gebben Miles. New lessons added weekly."
 >
 
   <!-- Header -->
   <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Course Catalog</h1>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">240+ Videos. New Lessons Weekly.</h1>
       <p class="text-slate-400 text-lg max-w-2xl mx-auto">
-        Structured curriculum from world champions. Every course is designed to take you from where you are to where you want to be.
+        Organized across 7 series covering everything from fundamentals to competition strategy.
+        One membership unlocks the entire library — plus every new video the moment it drops.
       </p>
     </div>
   </section>
 
-  <!-- Filter Bar -->
-  <section class="bg-slate-900 border-b border-slate-800 sticky top-16 z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex gap-3 overflow-x-auto pb-1">
-        {levels.map((level, i) => (
-          <button
-            class:list={[
-              'px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
-              i === 0
-                ? 'bg-amber-500 text-slate-950'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-            ]}
-          >
-            {level}
-          </button>
-        ))}
+  <!-- Stats Bar -->
+  <section class="bg-slate-900/50 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="text-2xl font-bold text-amber-500">240+</div>
+          <div class="text-slate-400 text-xs mt-1">Videos in Library</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-amber-500">7</div>
+          <div class="text-slate-400 text-xs mt-1">Content Series</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-amber-500">Weekly</div>
+          <div class="text-slate-400 text-xs mt-1">New Releases</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-amber-500">2</div>
+          <div class="text-slate-400 text-xs mt-1">World Champion Instructors</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Course Grid -->
+  <!-- Series Grid -->
   <section class="py-12 sm:py-16 bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {courses.map(course => (
-          <CourseCard {...course} />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {series.map((s) => {
+          const colors = accentMap[s.accent] || accentMap.amber;
+          return (
+            <article class="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/70 transition-all duration-300 flex flex-col">
+              <!-- Thumbnail placeholder -->
+              <div class="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+                <span class="text-3xl font-bold text-slate-700">{s.initials}</span>
+                <span class:list={['absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full border', colors.bg, colors.text, colors.border]}>
+                  {s.videoCount} videos
+                </span>
+              </div>
+              
+              <div class="p-5 flex flex-col flex-1">
+                <p class:list={['text-xs font-semibold uppercase tracking-widest mb-1.5', colors.text]}>
+                  {s.category}
+                </p>
+                <h3 class="text-lg font-semibold text-white mb-2">{s.title}</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4 flex-1">{s.description}</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-500 text-xs">{s.latest}</span>
+                  <span class="text-amber-500 text-sm font-medium">Browse →</span>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Releases -->
+  <section class="py-12 sm:py-16 bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8">Latest Releases</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {[
+          { title: '2026 Jack Links Cup Champion — Gebben Miles', series: 'Competition Recaps', duration: '18:24' },
+          { title: 'Low Rib vs High Rib — Which Is Right for You?', series: 'From the Range', duration: '12:37' },
+          { title: 'Why Blaser FBX?', series: 'Quiet Dust Series', duration: '15:02' },
+          { title: 'Reading Chandelles in the Wind', series: 'From the Range', duration: '9:48' },
+        ].map((ep) => (
+          <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:-translate-y-1 transition-all duration-300">
+            <div class="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+              <button class="w-12 h-12 rounded-full bg-amber-500/80 flex items-center justify-center">
+                <svg class="w-5 h-5 ml-0.5 text-slate-950" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              </button>
+              <span class="absolute bottom-2 right-2 text-xs text-white bg-black/60 px-2 py-0.5 rounded">{ep.duration}</span>
+            </div>
+            <div class="p-4">
+              <p class="text-amber-500 text-xs font-medium mb-1">{ep.series}</p>
+              <h4 class="text-white text-sm font-medium leading-snug">{ep.title}</h4>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <CTASection
-    headline="Get Access to Every Course"
-    subtext="One membership unlocks our entire library — plus new courses added every month and live weekly sessions."
+    headline="Get Access to the Full Library"
+    subtext="One membership unlocks 240+ videos, every series, and every new episode the moment it drops."
     ctaText="View Membership Plans"
+    ctaHref="/pricing"
   />
 
   <!-- Mobile Sticky CTA -->
   <div class="fixed bottom-0 inset-x-0 p-4 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 md:hidden z-40">
-    <a
-      href="/pricing"
-      class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center py-3 rounded-xl transition-colors"
-    >
+    <a href="/pricing" class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center py-3 rounded-xl transition-colors">
       Get Full Access
     </a>
   </div>
