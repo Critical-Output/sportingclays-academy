@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="About Our Instructors | Sporting Clays Academy"
+  description="Meet Karen Miles and Gebben Miles — world champions, USA Team members, and the instructors behind Sporting Clays Academy."
+>
+
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Meet Your Instructors</h1>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Two of the most accomplished sporting clays competitors in the world, dedicated to sharing the techniques and knowledge that produce champions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Karen Miles -->
+  <section class="py-16 sm:py-20 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Photo Placeholder -->
+        <div class="aspect-[4/5] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 flex items-center justify-center">
+          <div class="text-center">
+            <span class="text-6xl font-bold text-amber-500/30">KM</span>
+            <p class="text-slate-600 text-sm mt-2">Karen Miles</p>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div>
+          <p class="text-amber-500 font-semibold text-sm uppercase tracking-widest mb-2">Lead Instructor</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Karen Miles</h2>
+          <p class="text-amber-400 font-medium mb-6">Three-Time World Champion &bull; USA Team Captain</p>
+
+          <blockquote class="border-l-2 border-amber-500 pl-4 mb-8">
+            <p class="text-slate-300 italic leading-relaxed">
+              "Winning isn't about talent — it's about building the right habits and trusting your process. That's exactly what I teach. If you are willing to put in the work, I can show you the path."
+            </p>
+          </blockquote>
+
+          <p class="text-slate-400 leading-relaxed mb-6">
+            Karen Miles is one of the most decorated sporting clays competitors in history. A three-time World Champion, she has dominated the women's division for over a decade with a combination of technical precision, mental toughness, and relentless preparation.
+          </p>
+          <p class="text-slate-400 leading-relaxed mb-8">
+            As a Blaser-sponsored athlete shooting the FBX platform, Karen brings both competitive excellence and deep equipment knowledge to her instruction. Her teaching philosophy centers on building repeatable fundamentals — the same approach that has made her virtually unbeatable in domestic competition.
+          </p>
+
+          <h3 class="text-white font-semibold text-lg mb-4">Championship Timeline</h3>
+          <div class="space-y-3">
+            {[
+              { year: '2024', title: 'World FITASC Championship — Ladies Winner' },
+              { year: '2020–2025', title: 'Six Consecutive NSCA Ladies Championship Titles' },
+              { year: 'Ongoing', title: 'USA Sporting Clays Team Captain (Ladies)' },
+              { year: 'Career', title: 'Three-Time World Champion' },
+              { year: 'Career', title: 'U.S. Open Champion' },
+              { year: 'Career', title: 'NSCA National Championship Winner' },
+              { year: 'Sponsor', title: 'Blaser — Shooting FBX Shotguns' },
+            ].map(item => (
+              <div class="flex items-start gap-4">
+                <span class="text-amber-500 text-sm font-mono whitespace-nowrap min-w-[80px]">{item.year}</span>
+                <span class="text-slate-300 text-sm">{item.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="border-t border-slate-800"></div>
+  </div>
+
+  <!-- Gebben Miles -->
+  <section class="py-16 sm:py-20 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Bio (reversed order on desktop) -->
+        <div class="lg:order-2">
+          <!-- Photo Placeholder -->
+          <div class="aspect-[4/5] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 flex items-center justify-center">
+            <div class="text-center">
+              <span class="text-6xl font-bold text-amber-500/30">GM</span>
+              <p class="text-slate-600 text-sm mt-2">Gebben Miles</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:order-1">
+          <p class="text-amber-500 font-semibold text-sm uppercase tracking-widest mb-2">Senior Instructor</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Gebben Miles</h2>
+          <p class="text-amber-400 font-medium mb-6">World FITASC Champion &bull; USA Team Veteran</p>
+
+          <blockquote class="border-l-2 border-amber-500 pl-4 mb-8">
+            <p class="text-slate-300 italic leading-relaxed">
+              "Every target has a solution. My job is to teach you how to find it — quickly, consistently, and under any conditions. Once you understand the system, everything changes."
+            </p>
+          </blockquote>
+
+          <p class="text-slate-400 leading-relaxed mb-6">
+            Gebben Miles has been competing at the highest levels of sporting clays and FITASC for over two decades. His 2012 World FITASC Championship victory cemented his place among the sport's elite, and he has remained a fixture on the USA Sporting Clays Team ever since.
+          </p>
+          <p class="text-slate-400 leading-relaxed mb-8">
+            Known for his analytical approach to target reading and his ability to break down complex presentations into simple, repeatable processes, Gebben is the instructor you want when you are ready to take your game to the next level. He shoots the Blaser FBX and brings extensive knowledge of gun fit and equipment optimization.
+          </p>
+
+          <h3 class="text-white font-semibold text-lg mb-4">Championship Timeline</h3>
+          <div class="space-y-3">
+            {[
+              { year: '2026', title: 'Jack Links Cup Champion' },
+              { year: '2024', title: 'U.S. FITASC Grand Prix — High Overall Winner' },
+              { year: '2012', title: 'World FITASC Champion' },
+              { year: '2009', title: 'NSCA National Champion' },
+              { year: 'Ongoing', title: 'USA Sporting Clays Team — Senior Member' },
+              { year: 'Sponsor', title: 'Blaser — Shooting FBX Shotguns' },
+            ].map(item => (
+              <div class="flex items-start gap-4">
+                <span class="text-amber-500 text-sm font-mono whitespace-nowrap min-w-[80px]">{item.year}</span>
+                <span class="text-slate-300 text-sm">{item.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section id="story" class="py-16 sm:py-20 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Our Story</h2>
+      <p class="text-slate-400 leading-relaxed mb-6">
+        Sporting Clays Academy was born from a simple observation: the gap between what world-class shooters know and what most students have access to is enormous. YouTube videos and occasional lessons only go so far. We wanted to build something comprehensive — a real training platform that could take a shooter from any level and give them a clear, structured path to improvement.
+      </p>
+      <p class="text-slate-400 leading-relaxed mb-6">
+        Karen and Gebben have spent their careers competing at the top of the sport and coaching students along the way. They have seen the breakthroughs that happen when a student finally understands proper technique, target reading, or the mental game. Sporting Clays Academy takes those same lessons and makes them available to anyone, anywhere, anytime.
+      </p>
+      <p class="text-slate-400 leading-relaxed">
+        Our mission is simple: deliver world-championship-caliber sporting clays instruction to every shooter who wants to get better. Whether you are chasing your first 50-straight or your next national title, the path starts here.
+      </p>
+    </div>
+  </section>
+
+  <!-- Media / Press -->
+  <section class="py-16 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-slate-500 text-sm uppercase tracking-widest mb-8">As Featured In</p>
+      <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+        {['NRA', 'NSCA', 'Clay Target Nation', 'SSUSA', 'Shotgun Sports'].map(pub => (
+          <div class="px-6 py-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+            <span class="text-slate-500 font-semibold text-sm">{pub}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="Learn from the Best"
+    subtext="Start your journey with world-class instruction from Karen and Gebben Miles."
+    ctaText="View Course Catalog"
+    ctaHref="/courses"
+  />
+
+</BaseLayout>

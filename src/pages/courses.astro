@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import CTASection from '../components/CTASection.astro';
+
+const courses = [
+  {
+    title: 'Sporting Clays Fundamentals',
+    instructor: 'Karen Miles',
+    level: 'Beginner' as const,
+    lessons: '24 lessons',
+    description: 'Build a rock-solid foundation with proper stance, mount, swing, and follow-through. Karen breaks down the mechanics that have won her six consecutive national titles.',
+    initials: 'KM',
+  },
+  {
+    title: 'Advanced Target Reading',
+    instructor: 'Gebben Miles',
+    level: 'Intermediate' as const,
+    lessons: '18 lessons',
+    description: 'Master Gebben\'s systematic approach to reading any target presentation. Speed, angle, distance, and lead calculation demystified with on-range demonstrations.',
+    initials: 'GM',
+  },
+  {
+    title: 'Competition Strategy Masterclass',
+    instructor: 'Karen & Gebben Miles',
+    level: 'Advanced' as const,
+    lessons: '12 lessons',
+    description: 'The tactics that win major championships. Course management, pressure handling, squad dynamics, and the strategies Karen and Gebben use at FITASC and NSCA events.',
+    initials: 'K&G',
+  },
+  {
+    title: 'The Mental Game',
+    instructor: 'Karen Miles',
+    level: 'All Levels' as const,
+    lessons: '8 lessons',
+    description: 'Focus, confidence, and composure under pressure. Karen shares the mental frameworks that have carried her to three world championship titles and counting.',
+    initials: 'KM',
+  },
+  {
+    title: 'Equipment & Gun Fit Guide',
+    instructor: 'Gebben Miles',
+    level: 'All Levels' as const,
+    lessons: '6 lessons',
+    description: 'Choke selection, ammunition choices, gun fit essentials, and gear setup. Gebben covers the equipment decisions that make a measurable difference in your scores.',
+    initials: 'GM',
+  },
+  {
+    title: 'Weekly Live Analysis',
+    instructor: 'Karen & Gebben Miles',
+    level: 'Members Only' as const,
+    lessons: 'Ongoing weekly sessions',
+    description: 'Live video analysis sessions where Karen and Gebben review member-submitted shooting footage, answer questions, and break down tournament performances in real time.',
+    initials: 'LIVE',
+  },
+];
+
+const levels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+---
+
+<BaseLayout
+  title="Courses | Sporting Clays Academy"
+  description="Browse our complete sporting clays course catalog. From fundamentals to competition strategy, learn from world champions Karen and Gebben Miles."
+>
+
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Course Catalog</h1>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Structured curriculum from world champions. Every course is designed to take you from where you are to where you want to be.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="bg-slate-900 border-b border-slate-800 sticky top-16 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex gap-3 overflow-x-auto pb-1">
+        {levels.map((level, i) => (
+          <button
+            class:list={[
+              'px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
+              i === 0
+                ? 'bg-amber-500 text-slate-950'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            ]}
+          >
+            {level}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Grid -->
+  <section class="py-12 sm:py-16 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {courses.map(course => (
+          <CourseCard {...course} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="Get Access to Every Course"
+    subtext="One membership unlocks our entire library — plus new courses added every month and live weekly sessions."
+    ctaText="View Membership Plans"
+  />
+
+  <!-- Mobile Sticky CTA -->
+  <div class="fixed bottom-0 inset-x-0 p-4 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 md:hidden z-40">
+    <a
+      href="/pricing"
+      class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center py-3 rounded-xl transition-colors"
+    >
+      Get Full Access
+    </a>
+  </div>
+
+</BaseLayout>

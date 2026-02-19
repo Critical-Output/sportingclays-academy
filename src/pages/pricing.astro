@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQItem from '../components/FAQItem.astro';
+import CTASection from '../components/CTASection.astro';
+
+const comparisonFeatures = [
+  { feature: 'Full course library', monthly: true, annual: true, lifetime: true },
+  { feature: 'New monthly lessons', monthly: true, annual: true, lifetime: true },
+  { feature: 'Private community', monthly: true, annual: true, lifetime: true },
+  { feature: 'Mobile & desktop streaming', monthly: true, annual: true, lifetime: true },
+  { feature: 'Priority Q&A access', monthly: false, annual: true, lifetime: true },
+  { feature: 'Downloadable drill guides', monthly: false, annual: true, lifetime: true },
+  { feature: 'Early access to new courses', monthly: false, annual: true, lifetime: true },
+  { feature: 'Annual members-only webinar', monthly: false, annual: true, lifetime: true },
+  { feature: 'All future courses included', monthly: false, annual: false, lifetime: true },
+  { feature: '1:1 video review session', monthly: false, annual: false, lifetime: true },
+  { feature: 'Direct instructor messaging', monthly: false, annual: false, lifetime: true },
+];
+---
+
+<BaseLayout
+  title="Pricing | Sporting Clays Academy"
+  description="Choose your Sporting Clays Academy membership plan. Monthly, annual, or lifetime access to world-class instruction from Karen and Gebben Miles."
+>
+
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Simple, Transparent Pricing</h1>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        One membership, full access. No hidden fees, no per-course charges. Just world-class instruction at a price that makes sense.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section class="py-12 sm:py-16 bg-slate-950">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <PricingCard
+          name="Monthly"
+          price="$30"
+          period="/month"
+          features={[
+            'Full course library access',
+            'New lessons added monthly',
+            'Private community access',
+            'Mobile & desktop streaming',
+            'Cancel anytime',
+          ]}
+          cta="Start Monthly"
+        />
+        <PricingCard
+          name="Annual"
+          price="$279"
+          period="/year"
+          badge="SAVE 22%"
+          highlighted={true}
+          features={[
+            'Everything in Monthly',
+            'Save $81 per year',
+            'Priority Q&A access',
+            'Downloadable drill guides',
+            'Early access to new courses',
+            'Annual members-only webinar',
+          ]}
+          cta="Start Annual Plan"
+        />
+        <PricingCard
+          name="Lifetime"
+          price="$997"
+          period="one-time"
+          badge="BEST VALUE"
+          badgeColor="emerald"
+          features={[
+            'Everything in Annual',
+            'Pay once, learn forever',
+            'All future courses included',
+            '1:1 video review (1 session)',
+            'Exclusive lifetime member badge',
+            'Direct instructor messaging',
+          ]}
+          cta="Get Lifetime Access"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Comparison Table -->
+  <section class="py-16 bg-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white text-center mb-10">Full Feature Comparison</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-slate-700">
+              <th class="text-left text-slate-400 text-sm font-medium py-4 pr-4">Feature</th>
+              <th class="text-center text-slate-400 text-sm font-medium py-4 px-4">Monthly</th>
+              <th class="text-center text-amber-500 text-sm font-medium py-4 px-4">Annual</th>
+              <th class="text-center text-slate-400 text-sm font-medium py-4 px-4">Lifetime</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonFeatures.map(row => (
+              <tr class="border-b border-slate-800">
+                <td class="text-slate-300 text-sm py-3 pr-4">{row.feature}</td>
+                <td class="text-center py-3 px-4">
+                  {row.monthly ? (
+                    <svg class="w-5 h-5 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  ) : (
+                    <span class="text-slate-600">—</span>
+                  )}
+                </td>
+                <td class="text-center py-3 px-4">
+                  {row.annual ? (
+                    <svg class="w-5 h-5 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  ) : (
+                    <span class="text-slate-600">—</span>
+                  )}
+                </td>
+                <td class="text-center py-3 px-4">
+                  {row.lifetime ? (
+                    <svg class="w-5 h-5 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  ) : (
+                    <span class="text-slate-600">—</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Section -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 sm:p-10">
+        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-3">30-Day Money-Back Guarantee</h3>
+        <p class="text-slate-400 leading-relaxed">
+          We are confident you will see improvement in your game. But if for any reason you are not satisfied within the first 30 days, contact us for a full refund. No questions asked, no hoops to jump through. Your investment is completely risk-free.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="py-8 bg-slate-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center items-center gap-6 text-slate-500 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          Secure Checkout
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          SSL Encrypted
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          Powered by Stripe
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing FAQ -->
+  <section class="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white text-center mb-10">Pricing Questions</h2>
+
+      <div class="space-y-3">
+        <FAQItem
+          question="Can I switch plans later?"
+          answer="Yes. You can upgrade or downgrade your plan at any time. When upgrading, we will prorate the remaining time on your current plan. When downgrading, the change takes effect at your next billing cycle."
+        />
+        <FAQItem
+          question="Is there a free trial?"
+          answer="We offer a free lesson so you can experience the quality of our instruction before committing. Combined with our 30-day money-back guarantee, you can try the full platform completely risk-free."
+        />
+        <FAQItem
+          question="What payment methods do you accept?"
+          answer="We accept all major credit cards (Visa, Mastercard, American Express, Discover) through our secure Stripe payment processor. All transactions are encrypted and PCI compliant."
+        />
+        <FAQItem
+          question="Do you offer team or club pricing?"
+          answer="Yes. If you are a shooting club or team looking to provide access for multiple members, contact us at info@sportingclaysacademy.com for custom group pricing."
+        />
+        <FAQItem
+          question="What happens when new courses are added?"
+          answer="All active members get instant access to new courses and content as soon as they are published. Lifetime members are guaranteed access to every course we ever create — no additional charges, ever."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="py-12 bg-slate-900 text-center">
+    <p class="text-slate-400">
+      Questions? <a href="mailto:info@sportingclaysacademy.com" class="text-amber-500 hover:text-amber-400 transition-colors">Contact us</a> — we typically respond within 24 hours.
+    </p>
+  </section>
+
+  <!-- Mobile Sticky CTA -->
+  <div class="fixed bottom-0 inset-x-0 p-4 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 md:hidden z-40">
+    <a
+      href="/checkout"
+      class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center py-3 rounded-xl transition-colors"
+    >
+      Start Annual Plan — $279/yr
+    </a>
+  </div>
+
+</BaseLayout>

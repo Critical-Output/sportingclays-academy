@@ -1,0 +1,74 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/courses', label: 'Courses' },
+  { href: '/about', label: 'Instructors' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/free-lesson', label: 'Free Lesson' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800/50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="text-amber-500 font-bold text-xl tracking-tight group-hover:text-amber-400 transition-colors">
+        Sporting Clays Academy
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="text-sm text-slate-300 hover:text-white transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/pricing"
+        class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors"
+      >
+        Start Learning
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
+    <label
+      for="mobile-menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2"
+      aria-label="Toggle menu"
+    >
+      <span class="hamburger-top block w-6 h-0.5 bg-slate-300 transition-transform duration-300"></span>
+      <span class="hamburger-mid block w-6 h-0.5 bg-slate-300 transition-opacity duration-300"></span>
+      <span class="hamburger-bottom block w-6 h-0.5 bg-slate-300 transition-transform duration-300"></span>
+    </label>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="hidden fixed inset-x-0 top-16 bottom-0 bg-slate-950/95 backdrop-blur-lg flex-col items-center justify-start pt-12 gap-6 peer-checked:flex md:!hidden"
+    >
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="text-lg text-slate-300 hover:text-white transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/pricing"
+        class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-8 py-3 rounded-lg transition-colors mt-4"
+      >
+        Start Learning
+      </a>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-16"></div>

@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Free Lesson | Sporting Clays Academy"
+  description="Watch a free sporting clays lesson from world champion Karen Miles. Learn the fundamentals that have won world championships."
+>
+
+  <section class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: Copy + Form -->
+        <div>
+          <p class="text-amber-500 font-semibold text-sm uppercase tracking-widest mb-4">Free Lesson</p>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            Watch a Free Lesson from World Champion Karen Miles
+          </h1>
+          <p class="text-slate-400 text-lg leading-relaxed mb-8">
+            Get instant access to a full lesson on the three fundamentals every sporting clays shooter must master. This is the same foundation that Karen teaches her private students — and it has produced more breakthroughs than any other single lesson.
+          </p>
+
+          <!-- Email Form -->
+          <form class="space-y-4 mb-8">
+            <div>
+              <label for="name" class="block text-slate-300 text-sm font-medium mb-1.5">First Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your first name"
+                class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-slate-300 text-sm font-medium mb-1.5">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-lg py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/20"
+            >
+              Get Instant Access
+            </button>
+            <p class="text-slate-500 text-xs text-center">No credit card required. Unsubscribe anytime.</p>
+          </form>
+        </div>
+
+        <!-- Right: Video Placeholder -->
+        <div class="relative aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 overflow-hidden group cursor-pointer">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-20 h-20 bg-amber-500/90 rounded-full flex items-center justify-center group-hover:bg-amber-400 transition-colors group-hover:scale-110 duration-300">
+              <svg class="w-8 h-8 text-slate-950 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+          <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-slate-950/80 to-transparent">
+            <p class="text-white font-medium">Free Lesson: Three Fundamentals Every Shooter Must Master</p>
+            <p class="text-slate-400 text-sm">with Karen Miles &bull; 12 min</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You'll Learn -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white text-center mb-10">In This Free Lesson, You Will Learn</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 text-center">
+          <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-amber-500 font-bold text-xl">1</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Proper Gun Mount</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">The consistent mount technique that eliminates 80% of common misses. Most shooters get this wrong and never fix it.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 text-center">
+          <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-amber-500 font-bold text-xl">2</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Visual Focus</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Where to look and when to look there. Karen's focal point system works on every target presentation you will ever see.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 text-center">
+          <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-amber-500 font-bold text-xl">3</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Follow-Through</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">The critical two seconds after you pull the trigger that most shooters completely ignore — and why it costs them targets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructor Credibility -->
+  <section class="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/20 to-slate-800 flex items-center justify-center mx-auto mb-6 border-2 border-slate-700">
+        <span class="text-2xl font-bold text-amber-500">KM</span>
+      </div>
+      <h3 class="text-xl font-semibold text-white mb-2">Taught by Karen Miles</h3>
+      <p class="text-amber-400 text-sm mb-4">Three-Time World Champion &bull; 6x NSCA Ladies Champion &bull; USA Team Captain</p>
+      <p class="text-slate-400 leading-relaxed">
+        This lesson is pulled directly from the same curriculum Karen uses with her private students — competitors who pay $500+ per session. The fundamentals she covers here have produced more improvement in students than any other single lesson she teaches.
+      </p>
+    </div>
+  </section>
+
+  <!-- What Comes Next -->
+  <section class="py-16 bg-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold text-white mb-6">What Comes Next</h2>
+      <p class="text-slate-400 mb-8 leading-relaxed">
+        After watching the free lesson, you will receive a series of follow-up emails with additional tips and drills. When you are ready for the full curriculum, membership plans start at just $30/month with a 30-day money-back guarantee.
+      </p>
+      <a href="/pricing" class="text-amber-500 hover:text-amber-400 font-medium transition-colors">
+        View Membership Plans &rarr;
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

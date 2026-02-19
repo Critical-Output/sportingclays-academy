@@ -1,0 +1,343 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialProofBar from '../components/SocialProofBar.astro';
+import InstructorCard from '../components/InstructorCard.astro';
+import PricingCard from '../components/PricingCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import FAQItem from '../components/FAQItem.astro';
+import CTASection from '../components/CTASection.astro';
+
+const learningOutcomes = [
+  {
+    title: 'Consistent Technique',
+    description: 'Build a repeatable pre-shot routine, mount, and visual process that holds up under pressure.',
+    icon: '🎯',
+  },
+  {
+    title: 'Read Any Target',
+    description: 'Learn a simple system for speed, line, break-point, and hold-point decisions on every presentation.',
+    icon: '👀',
+  },
+  {
+    title: 'Competition Strategy',
+    description: 'Use world-championship level planning to reduce mental noise and execute with confidence.',
+    icon: '🏆',
+  },
+  {
+    title: 'Equipment Selection',
+    description: 'Dial in choke, ammo, and gun fit with practical guidance from elite competitors.',
+    icon: '🔧',
+  },
+  {
+    title: 'Mental Game',
+    description: 'Control nerves, recover quickly from misses, and stay composed station to station.',
+    icon: '🧠',
+  },
+  {
+    title: 'Practice Drills',
+    description: 'Train with focused drills that translate directly to better scores in real events.',
+    icon: '📈',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'I went from averaging 63 to 81 in eight weeks. The target-reading framework alone changed everything for me.',
+    name: 'Mark R.',
+    location: 'Texas, USA',
+  },
+  {
+    quote: 'Karen’s mental game modules helped me stop spiraling after one miss. I just won my first class punch.',
+    name: 'Sarah P.',
+    location: 'Georgia, USA',
+  },
+  {
+    quote: 'Gebben breaks down complex targets in a way that finally clicked. My confidence is completely different now.',
+    name: 'Liam W.',
+    location: 'Alberta, Canada',
+  },
+  {
+    quote: 'Best coaching investment I have made in 20 years of shooting. Structured, clear, and immediately usable.',
+    name: 'Greg H.',
+    location: 'Florida, USA',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'What skill level is this for?',
+    answer:
+      'All levels. Beginners get a clear foundation, while advanced shooters get high-level strategy, target-reading systems, and competition prep used by world champions.',
+  },
+  {
+    question: 'How is content delivered?',
+    answer:
+      'You get instant access to our online members portal with streaming lessons, downloadable drill guides, and new monthly content drops.',
+  },
+  {
+    question: 'Can I cancel anytime?',
+    answer:
+      'Yes. Monthly and annual plans can be canceled at any time from your account dashboard. Lifetime is one-time and includes all future updates.',
+  },
+  {
+    question: 'What equipment do I need?',
+    answer:
+      'A safe shotgun setup and a willingness to learn. We cover equipment and gun-fit guidance inside the program so you can optimize what you already have.',
+  },
+  {
+    question: 'How is this different from YouTube?',
+    answer:
+      'YouTube is fragmented. Our platform is a complete progression: fundamentals, target reading, strategy, mental game, and practice plans in one structured path.',
+  },
+];
+
+const courseSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Sporting Clays Academy Membership',
+  description:
+    'Online sporting clays instruction from world champions Karen Miles and Gebben Miles. Includes fundamentals, target reading, competition strategy, and weekly analysis.',
+  provider: {
+    '@type': 'Organization',
+    name: 'Sporting Clays Academy',
+    sameAs: 'https://sportingclays.academy',
+  },
+};
+---
+
+<BaseLayout
+  title="Sporting Clays Academy | Master Sporting Clays with World Champions"
+  description="Master sporting clays with world champions Karen Miles and Gebben Miles. Premium online instruction, structured training paths, and competition-level coaching."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(courseSchema)}></script>
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-amber-500 text-sm font-semibold uppercase tracking-[0.15em] mb-4">
+            World-Class Instruction
+          </p>
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
+            Master Sporting Clays with World Champions
+          </h1>
+          <p class="text-slate-300 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl">
+            Train with Karen Miles and Gebben Miles through a proven system built from world titles,
+            national championships, and decades of elite competition experience.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="/pricing"
+              class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center px-7 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/20"
+            >
+              Start Learning Today
+            </a>
+            <a
+              href="/free-lesson"
+              class="border border-slate-600 hover:border-slate-400 text-white font-semibold text-center px-7 py-4 rounded-xl transition-colors"
+            >
+              Watch a Free Lesson
+            </a>
+          </div>
+
+          <p class="text-slate-500 text-sm mt-6">
+            30-Day Money-Back Guarantee • Instant Access • Mobile + Desktop
+          </p>
+        </div>
+
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-6 flex items-end">
+            <div>
+              <p class="text-white font-semibold text-lg">Karen Miles + Gebben Miles</p>
+              <p class="text-slate-400 text-sm mt-1">Three-Time World Champion • 2026 Jack Links Cup Champion</p>
+            </div>
+          </div>
+          <div class="absolute -top-4 -right-4 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-2 rounded-lg shadow-xl">
+            New Weekly Lessons
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SocialProofBar />
+
+  <!-- Video Preview -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">See What You Will Learn</h2>
+      <p class="text-slate-400 mb-8">
+        Watch a preview lesson and experience how Karen and Gebben break down targets, technique, and strategy.
+      </p>
+      <div class="relative aspect-video rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <button class="w-20 h-20 rounded-full bg-amber-500/90 hover:bg-amber-400 text-slate-950 flex items-center justify-center transition-colors">
+            <svg class="w-8 h-8 ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+          </button>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4 text-left">
+          <p class="text-white font-semibold">Preview: Reading Crossers Under Pressure</p>
+          <p class="text-slate-400 text-sm">9:42 • Karen + Gebben breakdown</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn Outcomes -->
+  <section class="py-16 bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">What You Will Learn</h2>
+        <p class="text-slate-400">A complete progression from fundamentals to competition-level performance.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {learningOutcomes.map((item) => (
+          <article class="bg-slate-900 border border-slate-700 rounded-2xl p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/70 transition-all duration-300">
+            <div class="text-2xl mb-3">{item.icon}</div>
+            <h3 class="text-white font-semibold text-lg mb-2">{item.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructors -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Learn from the Winningest Names in Sporting Clays</h2>
+        <p class="text-slate-400">Elite credentials. Practical coaching. Proven results.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <InstructorCard
+          name="Karen Miles"
+          initials="KM"
+          title="Three-Time World Champion"
+          credentials={[
+            '2024 World FITASC Championship Ladies Winner',
+            'Six Consecutive NSCA Ladies Titles (2020–2025)',
+            'USA Sporting Clays Team Captain (Ladies)',
+            'Blaser FBX Athlete',
+          ]}
+        />
+        <InstructorCard
+          name="Gebben Miles"
+          initials="GM"
+          title="World FITASC Champion"
+          credentials={[
+            '2026 Jack Links Cup Champion',
+            '2024 U.S. FITASC Grand Prix High Overall',
+            '2012 World FITASC Champion',
+            'USA Sporting Clays Team Senior Member',
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-16 bg-slate-900/40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Choose Your Membership</h2>
+        <p class="text-slate-400">Start monthly, save with annual, or lock in lifetime access.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <PricingCard
+          name="Monthly"
+          price="$30"
+          period="/month"
+          features={[
+            'Full course library access',
+            'Weekly lesson drops',
+            'Private member community',
+            'Cancel anytime',
+          ]}
+          cta="Start Monthly"
+        />
+        <PricingCard
+          name="Annual"
+          price="$279"
+          period="/year"
+          badge="SAVE 22%"
+          highlighted={true}
+          features={[
+            'Everything in Monthly',
+            'Save $81 per year',
+            'Priority Q&A access',
+            'Downloadable drill guides',
+            'Early access to new courses',
+          ]}
+          cta="Start Annual"
+        />
+        <PricingCard
+          name="Lifetime"
+          price="$997"
+          period="one-time"
+          badge="BEST VALUE"
+          badgeColor="emerald"
+          features={[
+            'Everything in Annual',
+            'All future courses included',
+            '1:1 video review session',
+            'Direct instructor messaging',
+          ]}
+          cta="Get Lifetime"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">What Members Are Saying</h2>
+        <p class="text-slate-400">Real results from shooters across skill levels.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {testimonials.map((testimonial) => (
+          <TestimonialCard {...testimonial} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-slate-900/40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqItems.map((item) => (
+          <FAQItem question={item.question} answer={item.answer} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to Transform Your Game?"
+    subtext="Get instant access and start training with a complete system built by world champions."
+    ctaText="Join Sporting Clays Academy"
+    ctaHref="/checkout"
+  />
+
+  <!-- Mobile sticky CTA -->
+  <div class="fixed bottom-0 inset-x-0 p-4 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 md:hidden z-40">
+    <a href="/pricing" class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center py-3 rounded-xl transition-colors">
+      Start Learning Today
+    </a>
+  </div>
+</BaseLayout>

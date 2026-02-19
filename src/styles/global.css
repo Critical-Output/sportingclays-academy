@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-950: #0f172a;
+  --color-slate-900: #1e293b;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
+  --color-slate-200: #e2e8f0;
+  --color-slate-100: #f1f5f9;
+  --color-slate-50: #f8fafc;
+  --color-amber-500: #f59e0b;
+  --color-amber-400: #fbbf24;
+  --color-amber-600: #d97706;
+  --color-emerald-500: #10b981;
+  --color-emerald-400: #34d399;
+  --color-emerald-600: #059669;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accordion styling */
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::marker {
+  display: none;
+}
+
+details[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Mobile menu checkbox hack */
+#mobile-menu-toggle:checked ~ #mobile-menu {
+  display: flex;
+}
+
+#mobile-menu-toggle:checked ~ label .hamburger-top {
+  transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+
+#mobile-menu-toggle:checked ~ label .hamburger-mid {
+  opacity: 0;
+}
+
+#mobile-menu-toggle:checked ~ label .hamburger-bottom {
+  transform: rotate(-45deg) translateY(-6px) translateX(6px);
+}
+
+/* Countdown timer animation */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.countdown-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Number counter animation */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: count-up 0.6s ease-out forwards;
+}
+
+.stat-number:nth-child(2) { animation-delay: 0.15s; }
+.stat-number:nth-child(3) { animation-delay: 0.3s; }
+.stat-number:nth-child(4) { animation-delay: 0.45s; }

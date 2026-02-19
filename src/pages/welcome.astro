@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Welcome to Sporting Clays Academy!"
+  description="Your membership is active. Here is what to do next to start improving your sporting clays game."
+>
+
+  <section class="py-16 sm:py-24 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Success Icon -->
+      <div class="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="w-10 h-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">Welcome to the Academy!</h1>
+      <p class="text-slate-400 text-lg leading-relaxed mb-12">
+        Your membership is now active. You have made a great decision — the same instruction that has produced world champions is now at your fingertips. Here is how to get started.
+      </p>
+
+      <!-- 3 Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6">
+          <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-amber-500 font-bold text-xl">1</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Set Up Your Profile</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Complete your shooter profile so we can personalize your course recommendations based on your experience level and goals.
+          </p>
+          <a href="#" class="inline-block mt-4 text-amber-500 hover:text-amber-400 text-sm font-medium transition-colors">
+            Complete Profile &rarr;
+          </a>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6">
+          <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-amber-500 font-bold text-xl">2</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Watch Your First Lesson</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            We recommend starting with Karen's Fundamentals course. The first three lessons will reshape how you approach every station.
+          </p>
+          <a href="/courses" class="inline-block mt-4 text-amber-500 hover:text-amber-400 text-sm font-medium transition-colors">
+            Start Watching &rarr;
+          </a>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6">
+          <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <span class="text-amber-500 font-bold text-xl">3</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Join the Community</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Connect with fellow members, share your progress, ask questions, and get feedback from Karen, Gebben, and experienced shooters.
+          </p>
+          <a href="#" class="inline-block mt-4 text-amber-500 hover:text-amber-400 text-sm font-medium transition-colors">
+            Join Community &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upsell: 1:1 Coaching -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-b from-amber-500/10 to-slate-900 border border-amber-500/20 rounded-2xl p-8 text-center">
+        <p class="text-amber-500 font-semibold text-sm uppercase tracking-widest mb-2">Exclusive Add-On</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">
+          1:1 Coaching Session with Karen Miles
+        </h2>
+        <p class="text-slate-400 leading-relaxed mb-6">
+          Get a private 60-minute video coaching session with Karen. Submit your shooting footage in advance and receive personalized analysis, technique correction, and a custom practice plan tailored to your specific needs. Limited availability.
+        </p>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$197</span>
+          <span class="text-slate-400 text-sm ml-2">one-time</span>
+        </div>
+        <a
+          href="#"
+          class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-8 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/20"
+        >
+          Add Coaching Session
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share -->
+  <section class="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-xl font-semibold text-white mb-4">Know Someone Who Should Join?</h2>
+      <p class="text-slate-400 mb-6 text-sm">
+        Share Sporting Clays Academy with a friend and help them improve their game too.
+      </p>
+      <div class="flex justify-center gap-3">
+        <a href="#" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors border border-slate-700">
+          Share on Facebook
+        </a>
+        <a href="#" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors border border-slate-700">
+          Copy Link
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

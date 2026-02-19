@@ -1,0 +1,72 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  period?: string;
+  badge?: string;
+  badgeColor?: 'amber' | 'emerald';
+  features: string[];
+  highlighted?: boolean;
+  cta?: string;
+  ctaHref?: string;
+}
+
+const {
+  name,
+  price,
+  period = '',
+  badge,
+  badgeColor = 'amber',
+  features,
+  highlighted = false,
+  cta = 'Get Started',
+  ctaHref = '/checkout',
+} = Astro.props;
+
+const badgeClasses = badgeColor === 'emerald'
+  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+  : 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+---
+
+<div class:list={[
+  'relative rounded-2xl p-8 flex flex-col',
+  highlighted
+    ? 'bg-gradient-to-b from-amber-500/10 to-slate-900 border-2 border-amber-500/30 shadow-lg shadow-amber-500/5'
+    : 'bg-slate-900 border border-slate-700'
+]}>
+  {badge && (
+    <span class:list={['absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-semibold px-3 py-1 rounded-full border', badgeClasses]}>
+      {badge}
+    </span>
+  )}
+
+  <h3 class="text-xl font-semibold text-white mb-2">{name}</h3>
+
+  <div class="mb-6">
+    <span class="text-4xl font-bold text-white">{price}</span>
+    {period && <span class="text-slate-400 text-sm ml-1">{period}</span>}
+  </div>
+
+  <ul class="space-y-3 mb-8 flex-1">
+    {features.map(feature => (
+      <li class="flex items-start gap-3 text-sm text-slate-300">
+        <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        {feature}
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href={ctaHref}
+    class:list={[
+      'block text-center font-semibold py-3 px-6 rounded-lg transition-all duration-200',
+      highlighted
+        ? 'bg-amber-500 hover:bg-amber-400 text-slate-950'
+        : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-600'
+    ]}
+  >
+    {cta}
+  </a>
+</div>
