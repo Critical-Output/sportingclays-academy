@@ -7,13 +7,13 @@ const stats = [
 ];
 ---
 
-<section class="bg-slate-900/50 border-y border-slate-800">
+<section class="bg-slate-900 border-y border-slate-700 stat-section">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
       {stats.map((stat, i) => (
         <div class="text-center stat-number" style={`animation-delay: ${i * 0.15}s`}>
           <div class="text-2xl sm:text-3xl font-bold text-amber-500">{stat.value}</div>
-          <div class="text-slate-400 text-xs sm:text-sm mt-1">{stat.label}</div>
+          <div class="text-slate-300 text-xs sm:text-sm mt-1">{stat.label}</div>
         </div>
       ))}
     </div>

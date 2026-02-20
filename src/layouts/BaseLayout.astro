@@ -23,6 +23,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sporting
     <link rel="canonical" href={canonicalURL.href} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
@@ -45,5 +50,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sporting
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Scroll-triggered stat counter animations
+      const statObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.querySelectorAll('.stat-number').forEach((el) => {
+                el.classList.add('is-visible');
+              });
+              statObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      document.querySelectorAll('.stat-section').forEach((el) => statObserver.observe(el));
+    </script>
   </body>
 </html>

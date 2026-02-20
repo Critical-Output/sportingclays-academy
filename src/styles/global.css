@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-slate-950: #0f172a;
-  --color-slate-900: #1e293b;
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
   --color-slate-800: #1e293b;
   --color-slate-700: #334155;
   --color-slate-600: #475569;
@@ -75,16 +75,17 @@ details[open] .faq-chevron {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Number counter animation */
+/* Number counter animation — triggered by IntersectionObserver adding .is-visible */
 @keyframes count-up {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .stat-number {
-  animation: count-up 0.6s ease-out forwards;
+  opacity: 0;
 }
 
-.stat-number:nth-child(2) { animation-delay: 0.15s; }
-.stat-number:nth-child(3) { animation-delay: 0.3s; }
-.stat-number:nth-child(4) { animation-delay: 0.45s; }
+.stat-number.is-visible {
+  animation: count-up 0.6s ease-out forwards;
+  /* animation-delay is set per-element via inline style */
+}

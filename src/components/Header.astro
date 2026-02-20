@@ -8,17 +8,33 @@ const navLinks = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800/50">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50">
+  <!-- Announcement Bar -->
+  <div class="bg-amber-500 h-10 flex items-center justify-center px-4 overflow-hidden">
+    <p class="text-slate-950 text-xs sm:text-sm font-medium text-center">
+      <span class="font-bold">New:</span> Gebben Miles wins 2026 Jack Links Cup —
+      <a href="/courses" class="underline underline-offset-2 font-semibold hover:text-slate-800 transition-colors">
+        watch the breakdown
+      </a>
+    </p>
+  </div>
+
+  <!-- Nav -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between bg-slate-950/90 backdrop-blur-lg border-b border-slate-800/50">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 group">
-      <span class="text-amber-500 font-bold text-xl tracking-tight group-hover:text-amber-400 transition-colors">
+    <a href="/" class="flex items-center gap-2.5 group">
+      <svg class="w-6 h-6 text-amber-500 group-hover:text-amber-400 transition-colors shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+      </svg>
+      <span class="text-white font-bold text-lg tracking-tight group-hover:text-slate-200 transition-colors">
         Sporting Clays Academy
       </span>
     </a>
 
     <!-- Desktop Nav -->
-    <div class="hidden md:flex items-center gap-8">
+    <div class="hidden md:flex items-center gap-7">
       {navLinks.map(link => (
         <a
           href={link.href}
@@ -29,7 +45,7 @@ const navLinks = [
       ))}
       <a
         href="/pricing"
-        class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors"
+        class="bg-gradient-to-br from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-lg shadow-md shadow-amber-500/40 hover:shadow-lg hover:shadow-amber-500/60 hover:-translate-y-0.5 transition-all duration-200"
       >
         Start Learning
       </a>
@@ -39,7 +55,7 @@ const navLinks = [
     <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
     <label
       for="mobile-menu-toggle"
-      class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2"
+      class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-[70] relative"
       aria-label="Toggle menu"
     >
       <span class="hamburger-top block w-6 h-0.5 bg-slate-300 transition-transform duration-300"></span>
@@ -47,28 +63,32 @@ const navLinks = [
       <span class="hamburger-bottom block w-6 h-0.5 bg-slate-300 transition-transform duration-300"></span>
     </label>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu — fully opaque, no bleed-through -->
     <div
       id="mobile-menu"
-      class="hidden fixed inset-x-0 top-16 bottom-0 bg-slate-950/95 backdrop-blur-lg flex-col items-center justify-start pt-12 gap-6 peer-checked:flex md:!hidden"
+      class="hidden fixed inset-x-0 top-[104px] bottom-0 bg-slate-950 flex-col items-center justify-start pt-10 gap-6 peer-checked:flex md:!hidden z-[60] border-t border-slate-800"
     >
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-lg text-slate-300 hover:text-white transition-colors"
+          class="text-lg text-white hover:text-amber-400 transition-colors"
         >
           {link.label}
         </a>
       ))}
       <a
         href="/pricing"
-        class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-8 py-3 rounded-lg transition-colors mt-4"
+        class="bg-gradient-to-br from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold px-8 py-3 rounded-lg shadow-lg shadow-amber-500/40 hover:shadow-xl hover:shadow-amber-500/60 transition-all duration-200 mt-4"
       >
         Start Learning
       </a>
+
+      <div class="absolute bottom-8 text-slate-600 text-xs text-center px-8">
+        30-Day Money-Back Guarantee • Cancel Anytime
+      </div>
     </div>
   </nav>
 </header>
 
-<!-- Spacer for fixed header -->
-<div class="h-16"></div>
+<!-- Spacer: announcement bar (40px) + nav (64px) = 104px -->
+<div class="h-[104px]"></div>

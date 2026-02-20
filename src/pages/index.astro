@@ -11,57 +11,74 @@ const learningOutcomes = [
   {
     title: 'Consistent Technique',
     description: 'Build a repeatable pre-shot routine, mount, and visual process that holds up under pressure.',
-    icon: '🎯',
+    iconType: 'crosshair',
   },
   {
     title: 'Read Any Target',
     description: 'Learn a simple system for speed, line, break-point, and hold-point decisions on every presentation.',
-    icon: '👀',
+    iconType: 'eye',
   },
   {
     title: 'Competition Strategy',
     description: 'Use world-championship level planning to reduce mental noise and execute with confidence.',
-    icon: '🏆',
+    iconType: 'trophy',
   },
   {
     title: 'Equipment Selection',
     description: 'Dial in choke, ammo, and gun fit with practical guidance from elite competitors.',
-    icon: '🔧',
+    iconType: 'wrench',
   },
   {
     title: 'Mental Game',
     description: 'Control nerves, recover quickly from misses, and stay composed station to station.',
-    icon: '🧠',
+    iconType: 'lightbulb',
   },
   {
     title: 'Practice Drills',
     description: 'Train with focused drills that translate directly to better scores in real events.',
-    icon: '📈',
+    iconType: 'trending',
   },
 ];
 
+const icons: Record<string, string> = {
+  crosshair: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9a3 3 0 100 6 3 3 0 000-6z"/><path stroke-linecap="round" d="M12 3v3m0 12v3M3 12h3m12 0h3"/></svg>`,
+  eye: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+  trophy: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>`,
+  wrench: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z"/></svg>`,
+  lightbulb: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>`,
+  trending: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>`,
+};
+
 const testimonials = [
   {
-    quote: 'I went from averaging 63 to 81 in eight weeks. The target-reading framework alone changed everything for me.',
-    name: 'Mark R.',
-    location: 'Texas, USA',
+    quote: "I went from averaging 63 to 81 in eight weeks. The target-reading framework alone changed everything for me.",
+    name: "Mark R.",
+    location: "Texas, USA",
+    skillLevel: "Intermediate · B-Class",
+    improvement: "63 → 81 avg",
   },
   {
-    quote: 'Karen’s mental game modules helped me stop spiraling after one miss. I just won my first class punch.',
-    name: 'Sarah P.',
-    location: 'Georgia, USA',
+    quote: "Karen’s mental game modules helped me stop spiraling after one miss. I just won my first class punch.",
+    name: "Sarah P.",
+    location: "Georgia, USA",
+    skillLevel: "C-Class → B-Class",
+    improvement: "First Class Punch",
   },
   {
-    quote: 'Gebben breaks down complex targets in a way that finally clicked. My confidence is completely different now.',
-    name: 'Liam W.',
-    location: 'Alberta, Canada',
+    quote: "Gebben breaks down complex targets in a way that finally clicked. My confidence is completely different now.",
+    name: "Liam W.",
+    location: "Alberta, Canada",
+    skillLevel: "Advanced Shooter",
+    improvement: "+22 pts avg",
   },
   {
-    quote: 'Best coaching investment I have made in 20 years of shooting. Structured, clear, and immediately usable.',
-    name: 'Greg H.',
-    location: 'Florida, USA',
+    quote: "Best coaching investment I have made in 20 years of shooting. Structured, clear, and immediately usable.",
+    name: "Greg H.",
+    location: "Florida, USA",
+    skillLevel: "AA-Class",
   },
 ];
+const publications = ["NRA Publications", "NSCA", "Clay Target Nation", "SSUSA", "Shotgun Sports"];
 
 const faqItems = [
   {
@@ -114,7 +131,7 @@ const courseSchema = {
   </Fragment>
 
   <!-- Hero -->
-  <section class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 sm:py-24">
+  <section class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-20 sm:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
@@ -124,7 +141,7 @@ const courseSchema = {
           <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
             Master Sporting Clays with World Champions
           </h1>
-          <p class="text-slate-300 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl">
+          <p class="text-slate-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl">
             240+ instructional videos and counting. Train with Karen Miles and Gebben Miles through
             a proven system built from world titles, national championships, and decades of elite competition.
           </p>
@@ -132,19 +149,19 @@ const courseSchema = {
           <div class="flex flex-col sm:flex-row gap-4">
             <a
               href="/pricing"
-              class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center px-7 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/20"
+              class="bg-gradient-to-br from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-center px-7 py-4 rounded-xl shadow-lg shadow-amber-500/40 hover:shadow-xl hover:shadow-amber-500/60 hover:-translate-y-0.5 transition-all duration-200"
             >
               Start Learning Today
             </a>
             <a
               href="/free-lesson"
-              class="border border-slate-600 hover:border-slate-400 text-white font-semibold text-center px-7 py-4 rounded-xl transition-colors"
+              class="border border-slate-500 hover:border-slate-300 text-white font-semibold text-center px-7 py-4 rounded-xl transition-colors"
             >
               Watch a Free Lesson
             </a>
           </div>
 
-          <p class="text-slate-500 text-sm mt-6">
+          <p class="text-slate-400 text-sm mt-6">
             30-Day Money-Back Guarantee • Instant Access • Mobile + Desktop
           </p>
         </div>
@@ -152,7 +169,7 @@ const courseSchema = {
         <div class="relative">
           <div class="aspect-[4/3] rounded-2xl border border-slate-700 overflow-hidden relative">
             <img src="/images/hero/hero-duo.jpg" alt="Karen Miles and Gebben Miles standing together on the shooting range" class="absolute inset-0 w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6">
               <p class="text-white font-semibold text-lg">Karen Miles + Gebben Miles</p>
               <p class="text-slate-400 text-sm mt-1">Three-Time World Champion • 2026 Jack Links Cup Champion</p>
@@ -168,18 +185,31 @@ const courseSchema = {
 
   <SocialProofBar />
 
+  <!-- As Seen In -->
+  <section class="bg-slate-900 border-b border-slate-700 py-5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
+        <p class="text-slate-500 text-[10px] uppercase tracking-[0.2em] font-semibold whitespace-nowrap shrink-0">As seen in</p>
+        <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-2">
+          {publications.map(pub => (
+            <span class="text-slate-300 font-semibold text-sm hover:text-white transition-colors">{pub}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Video Preview -->
   <section class="py-16 bg-slate-950">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">See What You Will Learn</h2>
-      <p class="text-slate-400 mb-8">
+      <p class="text-slate-300 mb-8">
         Watch a preview lesson and experience how Karen and Gebben break down targets, technique, and strategy.
       </p>
       <div class="relative aspect-video rounded-2xl border border-slate-700 overflow-hidden">
         <img src="/images/thumbnails/laser-swing.jpg" alt="Video preview — Reading crossers under pressure with Karen and Gebben Miles" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        <div class="absolute inset-0 bg-slate-950/40"></div>
         <div class="absolute inset-0 flex items-center justify-center">
-          <button class="w-20 h-20 rounded-full bg-amber-500/90 hover:bg-amber-400 text-slate-950 flex items-center justify-center transition-colors">
+          <button class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 flex items-center justify-center shadow-xl shadow-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/70 hover:scale-110 transition-all duration-200">
             <svg class="w-8 h-8 ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
           </button>
         </div>
@@ -192,19 +222,21 @@ const courseSchema = {
   </section>
 
   <!-- Learn Outcomes -->
-  <section class="py-16 bg-slate-900/40">
+  <section class="py-16 bg-slate-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">What You Will Learn</h2>
-        <p class="text-slate-400">240+ videos covering a complete progression from fundamentals to competition-level performance. New lessons every week.</p>
+        <p class="text-slate-300">240+ videos covering a complete progression from fundamentals to competition-level performance. New lessons every week.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {learningOutcomes.map((item) => (
-          <article class="bg-slate-900 border border-slate-700 rounded-2xl p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/70 transition-all duration-300">
-            <div class="text-2xl mb-3">{item.icon}</div>
+          <article class="bg-slate-800 border border-slate-700 rounded-2xl p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/50 hover:border-slate-500 transition-all duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center mb-5 text-amber-400 group-hover:bg-amber-500/25 group-hover:border-amber-500/50 transition-colors">
+              <Fragment set:html={icons[item.iconType]} />
+            </div>
             <h3 class="text-white font-semibold text-lg mb-2">{item.title}</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">{item.description}</p>
+            <p class="text-slate-300 text-sm leading-relaxed">{item.description}</p>
           </article>
         ))}
       </div>
@@ -212,11 +244,11 @@ const courseSchema = {
   </section>
 
   <!-- Instructors -->
-  <section class="py-16 bg-slate-950">
+  <section class="py-20 sm:py-24 bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Learn from the Winningest Names in Sporting Clays</h2>
-        <p class="text-slate-400">Elite credentials. Practical coaching. Proven results.</p>
+        <p class="text-slate-300">Elite credentials. Practical coaching. Proven results.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -251,11 +283,11 @@ const courseSchema = {
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" class="py-16 bg-slate-900/40">
+  <section id="pricing" class="py-16 bg-slate-900">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Choose Your Membership</h2>
-        <p class="text-slate-400">Start monthly, save with annual, or lock in lifetime access.</p>
+        <p class="text-slate-300">Start monthly, save with annual, or lock in lifetime access.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -275,7 +307,8 @@ const courseSchema = {
           name="Annual"
           price="$279"
           period="/year"
-          badge="SAVE 22%"
+          priceEquivalent="= $23.25/mo — less than one box of shells"
+          badge="MOST POPULAR"
           highlighted={true}
           features={[
             'Everything in Monthly',
@@ -284,7 +317,7 @@ const courseSchema = {
             'Downloadable drill guides',
             'Early access to new episodes',
           ]}
-          cta="Start Annual"
+          cta="Start Annual Plan"
         />
         <PricingCard
           name="Lifetime"
@@ -305,14 +338,14 @@ const courseSchema = {
   </section>
 
   <!-- Testimonials -->
-  <section class="py-16 bg-slate-950">
+  <section class="py-20 sm:py-24 bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">What Members Are Saying</h2>
-        <p class="text-slate-400">Real results from shooters across skill levels.</p>
+        <p class="text-slate-300">Real results from shooters across skill levels.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
         {testimonials.map((testimonial) => (
           <TestimonialCard {...testimonial} />
         ))}
@@ -321,7 +354,7 @@ const courseSchema = {
   </section>
 
   <!-- FAQ -->
-  <section class="py-16 bg-slate-900/40">
+  <section class="py-16 bg-slate-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10">
         <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
@@ -344,7 +377,7 @@ const courseSchema = {
 
   <!-- Mobile sticky CTA -->
   <div class="fixed bottom-0 inset-x-0 p-4 bg-slate-950/90 backdrop-blur-lg border-t border-slate-800 md:hidden z-40">
-    <a href="/pricing" class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-center py-3 rounded-xl transition-colors">
+    <a href="/pricing" class="block w-full bg-gradient-to-br from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-center py-3 rounded-xl shadow-lg shadow-amber-500/40 transition-all duration-200">
       Start Learning Today
     </a>
   </div>
