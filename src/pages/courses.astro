@@ -4,81 +4,74 @@ import CTASection from '../components/CTASection.astro';
 
 const series = [
   {
-    title: 'From the Range',
-    category: 'On-Range Instruction',
-    videoCount: '60+',
-    description: 'Real-time target breakdowns filmed live on the range. Gebben and Karen analyze presentations, walk through hold points, and demonstrate technique at actual stations.',
-    initials: 'FR',
+    title: 'Target Breakdowns',
+    category: 'Target Types',
+    videoCount: '54',
+    description: 'The heart of the library. Crossers, chandelles, teal, towers, incoming, rabbits, battue, quartering — every target type you\'ll face on course, broken down hold point by hold point with Gebben and Karen.',
     accent: 'amber',
-    latest: 'New episode every week',
+    latest: 'New targets added regularly',
     thumbnail: '/images/thumbnails/crossing-looper.jpg',
-    thumbAlt: 'Gebben and Karen on-range target breakdown',
+    thumbAlt: '40-yard crossing looper target breakdown on the range',
   },
   {
-    title: 'Gebben Miles Basics',
-    category: 'Fundamentals',
-    videoCount: '35+',
-    description: 'The complete foundation series. Stance, mount, swing mechanics, follow-through, and the core visual process that every consistent shooter must master.',
-    initials: 'GMB',
+    title: 'Fundamentals',
+    category: 'Technique Foundation',
+    videoCount: '23',
+    description: 'The bedrock of consistent shooting. Gun mount, athletic stance, eye dominance, soft vs. hard focus, visual process, and the move-mount mechanics that drive everything else. Watch this first — then everything clicks.',
     accent: 'blue',
     latest: 'Complete series',
     thumbnail: '/images/thumbnails/laser-swing.jpg',
-    thumbAlt: 'Gebben Miles basics series — fundamentals instruction',
+    thumbAlt: 'Fundamentals series — stance, mount, and visual process',
   },
   {
-    title: 'Quiet Dust Shooting',
-    category: 'Advanced Technique',
-    videoCount: '40+',
-    description: "Gebben Miles' original advanced series. Deep dives into target reading, lead management, and the nuanced adjustments that separate good shooters from great ones.",
-    initials: 'QDS',
-    accent: 'emerald',
-    latest: 'Ongoing',
-    thumbnail: '/images/thumbnails/anticipation.jpg',
-    thumbAlt: 'Quiet Dust Series — advanced sporting clays technique',
-  },
-  {
-    title: 'Joseph Fanizzi Series',
-    category: 'Guest Coaching',
-    videoCount: '30+',
-    description: 'Station-by-station course analysis and coaching with elite competitor Joseph Fanizzi. Tournament-level strategy from one of the best in the game.',
-    initials: 'FS',
-    accent: 'violet',
+    title: 'Competition & Course',
+    category: 'Tournament Coverage',
+    videoCount: '34',
+    description: 'Complete US Open coverage (Red, White, and Blue courses, every station), FITASC lessons and peg analysis, World Championship breakdowns, and shoot-off prep. The closest you can get to walking the course with champions.',
+    accent: 'orange',
     latest: 'Updated after major events',
-    thumbnail: '/images/thumbnails/chandelle-2.jpg',
-    thumbAlt: 'Joseph Fanizzi guest coaching series',
+    thumbnail: '/images/thumbnails/tricky-pair.jpg',
+    thumbAlt: 'US Open station-by-station competition analysis',
   },
   {
-    title: 'Homeschool',
-    category: 'Drills & Practice',
-    videoCount: '25+',
-    description: 'Structured practice sessions designed for the range. Specific drills for crossers, teal, rabbits, chandelles, and more — with clear improvement benchmarks.',
-    initials: 'HS',
+    title: 'The Mental Game',
+    category: 'Performance Psychology',
+    videoCount: '16',
+    description: 'The series most shooters overlook — and the one that separates good from great. Pre-shot routine, post-shot routine, winning mindsets, dealing with missing, nationals prep, proper patience, and goal-setting. Taught by Karen, Gebben, and Joe Fanizzi.',
+    accent: 'violet',
+    latest: 'Complete series',
+    thumbnail: '/images/thumbnails/chandelle-angle.jpg',
+    thumbAlt: 'Mental game and performance psychology for sporting clays',
+  },
+  {
+    title: 'Practice & Drills',
+    category: 'Structured Training',
+    videoCount: '17',
+    description: 'Structured range sessions with measurable benchmarks. The Super Sporting Practice series (6 parts), ladder drills, night practice, balance board training, skill-building progressions, and off-season protocols.',
     accent: 'rose',
     latest: 'Ongoing',
     thumbnail: '/images/thumbnails/hold-point.jpg',
-    thumbAlt: 'Homeschool drill series — sporting clays practice',
+    thumbAlt: 'Practice drills and structured training sessions',
   },
   {
-    title: 'Webinars & Live Q&A',
-    category: 'Interactive Sessions',
-    videoCount: '30+',
-    description: 'Recorded live sessions where Karen and Gebben answer member questions, review submitted footage, and go deep on strategy with the SCA community.',
-    initials: 'LIVE',
+    title: 'Joe Fanizzi Series',
+    category: 'Guest Coaching',
+    videoCount: '12+',
+    description: 'Elite guest coaching from Joe Fanizzi — foundation, fundamentals, tower pair strategy, philosophy on rabbue and battue targets, pre-shot routine, report pair vs. true pair, and a complete goal-setting framework.',
+    accent: 'emerald',
+    latest: 'Updated with new sessions',
+    thumbnail: '/images/thumbnails/chandelle-2.jpg',
+    thumbAlt: 'Joe Fanizzi guest coaching series',
+  },
+  {
+    title: 'Quiet Dust & Signature Series',
+    category: 'Deep-Dive Content',
+    videoCount: '103',
+    description: 'The largest section of the library. Includes the Laser Method series, Mastering the Matrix (5 parts), the full Quiet Dust Shooting archive, World FITASC documentary, ShotKam compilation reels, Connection is Key, and dozens of individual technique deep-dives.',
     accent: 'cyan',
-    latest: 'Monthly live sessions',
-    thumbnail: '/images/thumbnails/slow-crosser.jpg',
-    thumbAlt: 'SCA live webinar — Q&A with Gebben and Karen Miles',
-  },
-  {
-    title: 'Competition Analysis',
-    category: 'Tournament Coverage',
-    videoCount: '20+',
-    description: 'Gebben and Karen break down their own competition footage — what worked, what didn\'t, and what you can learn from watching champions compete under pressure.',
-    initials: 'CA',
-    accent: 'orange',
-    latest: 'After major events',
-    thumbnail: '/images/thumbnails/tricky-pair.jpg',
-    thumbAlt: 'Gebben and Karen competition footage analysis',
+    latest: 'Ongoing',
+    thumbnail: '/images/thumbnails/anticipation.jpg',
+    thumbAlt: 'Quiet Dust Shooting and signature series deep-dive content',
   },
 ];
 
@@ -91,20 +84,33 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
   cyan: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20' },
   orange: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20' },
 };
+
+const targetTypes = [
+  { name: 'Crossers & Loopers', count: 12 },
+  { name: 'Teal', count: 8 },
+  { name: 'Chandelles', count: 7 },
+  { name: 'Tower & Driven', count: 8 },
+  { name: 'Trap & Skeet', count: 7 },
+  { name: 'Incoming', count: 5 },
+  { name: 'Rabbit & Battue', count: 5 },
+  { name: 'Quartering', count: 4 },
+  { name: 'True Pairs', count: 4 },
+  { name: 'FITASC Targets', count: 4 },
+];
 ---
 
 <BaseLayout
   title="Video Library | Sporting Clays Academy"
-  description="Browse 240+ instructional videos across 7 series from world champions Karen and Gebben Miles. New lessons added weekly."
+  description="Browse 258 instructional videos across 7 categories from world champions Karen and Gebben Miles. Target breakdowns, fundamentals, competition analysis, mental game, and more. New lessons added weekly."
 >
 
   <!-- Header -->
   <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">240+ Videos. New Lessons Weekly.</h1>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">258 Videos. New Lessons Weekly.</h1>
       <p class="text-slate-300 text-lg max-w-2xl mx-auto">
-        Organized across 7 series covering everything from fundamentals to competition strategy.
-        One membership unlocks the entire library — plus every new video the moment it drops.
+        Seven categories covering every dimension of the sport — from target-by-target breakdowns to mental game, competition analysis, and structured drills.
+        One membership unlocks everything.
       </p>
     </div>
   </section>
@@ -114,20 +120,20 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
-          <div class="text-2xl font-bold text-amber-500">240+</div>
+          <div class="text-2xl font-bold text-amber-500">258</div>
           <div class="text-slate-400 text-xs mt-1">Videos in Library</div>
         </div>
         <div>
           <div class="text-2xl font-bold text-amber-500">7</div>
-          <div class="text-slate-400 text-xs mt-1">Content Series</div>
+          <div class="text-slate-400 text-xs mt-1">Content Categories</div>
         </div>
         <div>
           <div class="text-2xl font-bold text-amber-500">Weekly</div>
           <div class="text-slate-400 text-xs mt-1">New Releases</div>
         </div>
         <div>
-          <div class="text-2xl font-bold text-amber-500">2</div>
-          <div class="text-slate-400 text-xs mt-1">World Champion Instructors</div>
+          <div class="text-2xl font-bold text-amber-500">4</div>
+          <div class="text-slate-400 text-xs mt-1">World-Class Instructors</div>
         </div>
       </div>
     </div>
@@ -147,7 +153,7 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
                   {s.videoCount} videos
                 </span>
               </div>
-              
+
               <div class="p-5 flex flex-col flex-1">
                 <p class:list={['text-xs font-semibold uppercase tracking-widest mb-1.5', colors.text]}>
                   {s.category}
@@ -166,16 +172,37 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
     </div>
   </section>
 
+  <!-- Browse by Target Type -->
+  <section class="py-12 sm:py-16 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">Browse by Target Type</h2>
+        <p class="text-slate-400 mt-2 text-sm">54 dedicated videos covering every presentation you'll face on course — members can filter the full library by target type.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        {targetTypes.map((t) => (
+          <div class="flex items-center gap-2.5 bg-slate-800 border border-slate-700 hover:border-amber-500/40 hover:bg-slate-750 rounded-xl px-4 py-3 transition-all duration-200 cursor-default group">
+            <span class="text-white font-medium text-sm group-hover:text-amber-400 transition-colors">{t.name}</span>
+            <span class="bg-slate-700 text-amber-500 text-xs font-bold px-2 py-0.5 rounded-full">{t.count}</span>
+          </div>
+        ))}
+        <div class="flex items-center gap-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3">
+          <span class="text-amber-400 font-medium text-sm">+ more inside</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Recent Releases -->
-  <section class="py-12 sm:py-16 bg-slate-900">
+  <section class="py-12 sm:py-16 bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8">Latest Releases</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
-          { title: '2026 Jack Links Cup Champion: Gebben Miles', series: 'Competition Analysis', duration: '18:24', thumbnail: '/images/thumbnails/chandelle-angle.jpg', thumbAlt: 'Gebben Miles the day after winning the 2026 Jack Links Cup' },
-          { title: 'Low Rib vs High Rib', series: 'From the Range', duration: '12:37', thumbnail: '/images/thumbnails/tricky-pair.jpg', thumbAlt: 'Gebben and Karen compare low rib vs high rib Blaser FBX' },
-          { title: 'Why Blaser FBX?', series: 'From the Range', duration: '15:02', thumbnail: '/images/thumbnails/blaser-fbx.jpg', thumbAlt: 'Gebben and Karen explain the switch from Krieghoff to Blaser FBX' },
-          { title: 'Season Prep 2026', series: 'From the Range', duration: '11:22', thumbnail: '/images/thumbnails/season-prep.jpg', thumbAlt: 'Gebben and Karen share 2026 season preparations' },
+          { title: '2026 Jack Links Cup Champion: Gebben Miles', series: 'Competition & Course', duration: '18:24', thumbnail: '/images/thumbnails/chandelle-angle.jpg', thumbAlt: 'Gebben Miles the day after winning the 2026 Jack Links Cup' },
+          { title: 'Low Rib vs High Rib', series: 'Target Breakdowns', duration: '12:37', thumbnail: '/images/thumbnails/tricky-pair.jpg', thumbAlt: 'Gebben and Karen compare low rib vs high rib on the Blaser FBX' },
+          { title: 'Why Blaser FBX?', series: 'Target Breakdowns', duration: '15:02', thumbnail: '/images/thumbnails/blaser-fbx.jpg', thumbAlt: 'Gebben and Karen explain the switch from Krieghoff to Blaser FBX' },
+          { title: 'Season Prep 2026', series: 'Practice & Drills', duration: '11:22', thumbnail: '/images/thumbnails/season-prep.jpg', thumbAlt: 'Gebben and Karen share 2026 season preparations' },
         ].map((ep) => (
           <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:-translate-y-1 transition-all duration-300">
             <div class="aspect-video relative overflow-hidden">
@@ -199,7 +226,7 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
 
   <CTASection
     headline="Get Access to the Full Library"
-    subtext="One membership unlocks 240+ videos, every series, and every new episode the moment it drops."
+    subtext="One membership unlocks all 258 videos, every category, and every new episode the moment it drops."
     ctaText="View Membership Plans"
     ctaHref="/pricing"
   />
