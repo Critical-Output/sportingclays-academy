@@ -45,21 +45,22 @@ const navLinks = [
     </div>
 
     <!-- Mobile Menu Toggle -->
-    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
-    <label
-      for="mobile-menu-toggle"
+    <button
+      id="mobile-menu-btn"
       class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-[70] relative"
       aria-label="Toggle menu"
+      aria-expanded="false"
     >
-      <span class="hamburger-top block w-6 h-0.5 bg-slate-300 transition-transform duration-300"></span>
-      <span class="hamburger-mid block w-6 h-0.5 bg-slate-300 transition-opacity duration-300"></span>
-      <span class="hamburger-bottom block w-6 h-0.5 bg-slate-300 transition-transform duration-300"></span>
-    </label>
+      <span id="ham-top" class="block w-6 h-0.5 bg-slate-300 transition-transform duration-300 origin-center"></span>
+      <span id="ham-mid" class="block w-6 h-0.5 bg-slate-300 transition-opacity duration-300"></span>
+      <span id="ham-bot" class="block w-6 h-0.5 bg-slate-300 transition-transform duration-300 origin-center"></span>
+    </button>
 
-    <!-- Mobile Menu — fully opaque, no bleed-through -->
+    <!-- Mobile Menu -->
     <div
       id="mobile-menu"
-      class="hidden fixed inset-x-0 top-[104px] bottom-0 bg-slate-950 flex-col items-center justify-start pt-10 gap-6 peer-checked:flex md:!hidden z-[60] border-t border-slate-800"
+      class="md:hidden"
+      style="display:none; position:fixed; inset:104px 0 0 0; background:#020617; z-index:60; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:2.5rem; gap:1.5rem; border-top:1px solid rgb(30 41 59);"
     >
       {navLinks.map(link => (
         <a
@@ -76,11 +77,44 @@ const navLinks = [
         Start Learning
       </a>
 
-      <div class="absolute bottom-8 text-slate-600 text-xs text-center px-8">
+      <div style="position:absolute; bottom:2rem; color:rgb(71 85 105); font-size:0.75rem; text-align:center; padding:0 2rem;">
         30-Day Money-Back Guarantee • Cancel Anytime
       </div>
     </div>
   </nav>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const hamTop = document.getElementById('ham-top');
+    const hamMid = document.getElementById('ham-mid');
+    const hamBot = document.getElementById('ham-bot');
+    let open = false;
+
+    btn?.addEventListener('click', () => {
+      open = !open;
+      if (menu) {
+        menu.style.display = open ? 'flex' : 'none';
+      }
+      btn?.setAttribute('aria-expanded', String(open));
+      // Animate to X
+      if (hamTop) hamTop.style.transform = open ? 'translateY(8px) rotate(45deg)' : '';
+      if (hamMid) hamMid.style.opacity = open ? '0' : '1';
+      if (hamBot) hamBot.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
+    });
+
+    // Close on nav link click
+    menu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        open = false;
+        if (menu) menu.style.display = 'none';
+        btn?.setAttribute('aria-expanded', 'false');
+        if (hamTop) hamTop.style.transform = '';
+        if (hamMid) hamMid.style.opacity = '1';
+        if (hamBot) hamBot.style.transform = '';
+      });
+    });
+  </script>
 </header>
 
 <!-- Spacer: announcement bar (40px) + nav (64px) = 104px -->
