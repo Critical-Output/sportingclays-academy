@@ -20,6 +20,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sporting
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="canonical" href={canonicalURL.href} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -43,6 +44,34 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sporting
 
     <title>{title}</title>
     <slot name="head" />
+
+    <!-- Analytics Core -->
+    <script>
+    !function(){
+      var rudderanalytics=window.rudderanalytics=window.rudderanalytics||[];
+      rudderanalytics.methods=["load","page","track","identify","alias","group","ready","reset","getAnonymousId","setAnonymousId"];
+      rudderanalytics.factory=function(t){return function(){var r=Array.prototype.slice.call(arguments);r.unshift(t);rudderanalytics.push(r);return rudderanalytics}};
+      for(var t=0;t<rudderanalytics.methods.length;t++){var r=rudderanalytics.methods[t];rudderanalytics[r]=rudderanalytics.factory(r)}
+      rudderanalytics.load("3A5YReQv1HLTDxLrSBxjZ3p2OoC","https://t.pursuitshq.com");
+      rudderanalytics.page({
+        properties:{
+          org_id:"sca",
+          brand_id:"sca",
+          property_id:"sca-" + window.location.hostname.replace(/\./g, "-"),
+          vertical:"instruction",
+          entity_id:"sca",
+          session_id: (function(){
+            var k="phq_sid";
+            var s=sessionStorage.getItem(k);
+            if(!s){s=Math.random().toString(36).substring(2)+Date.now().toString(36);sessionStorage.setItem(k,s);}
+            return s;
+          })()
+        }
+      });
+      window.phq = rudderanalytics;
+    }();
+    </script>
+    <script async src="https://cdn.pursuitshq.com/api/v1/core.js"></script>
   </head>
   <body class="bg-slate-950 text-slate-50 font-sans min-h-screen flex flex-col">
     <Header />
