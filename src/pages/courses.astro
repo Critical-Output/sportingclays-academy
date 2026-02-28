@@ -2,79 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
 
-const series = [
-  {
-    title: 'Target Breakdowns',
-    category: 'Target Types',
-    videoCount: '54',
-    description: 'The heart of the library. Crossers, chandelles, teal, towers, incoming, rabbits, battue, quartering — every target type you\'ll face on course, broken down hold point by hold point with Gebben and Karen.',
-    accent: 'amber',
-    latest: 'New targets added regularly',
-    thumbnail: '/images/thumbnails/crossing-looper.jpg',
-    thumbAlt: '40-yard crossing looper target breakdown on the range',
-  },
-  {
-    title: 'Fundamentals',
-    category: 'Technique Foundation',
-    videoCount: '23',
-    description: 'The bedrock of consistent shooting. Gun mount, athletic stance, eye dominance, soft vs. hard focus, visual process, and the move-mount mechanics that drive everything else. Watch this first — then everything clicks.',
-    accent: 'blue',
-    latest: 'Complete series',
-    thumbnail: '/images/thumbnails/laser-swing.jpg',
-    thumbAlt: 'Fundamentals series — stance, mount, and visual process',
-  },
-  {
-    title: 'Competition & Course',
-    category: 'Tournament Coverage',
-    videoCount: '34',
-    description: 'Complete US Open coverage (Red, White, and Blue courses, every station), FITASC lessons and peg analysis, World Championship breakdowns, and shoot-off prep. The closest you can get to walking the course with champions.',
-    accent: 'orange',
-    latest: 'Updated after major events',
-    thumbnail: '/images/thumbnails/tricky-pair.jpg',
-    thumbAlt: 'US Open station-by-station competition analysis',
-  },
-  {
-    title: 'The Mental Game',
-    category: 'Performance Psychology',
-    videoCount: '16',
-    description: 'The series most shooters overlook — and the one that separates good from great. Pre-shot routine, post-shot routine, winning mindsets, dealing with missing, nationals prep, proper patience, and goal-setting. Taught by Karen, Gebben, and Joe Fanizzi.',
-    accent: 'violet',
-    latest: 'Complete series',
-    thumbnail: '/images/thumbnails/chandelle-angle.jpg',
-    thumbAlt: 'Mental game and performance psychology for sporting clays',
-  },
-  {
-    title: 'Practice & Drills',
-    category: 'Structured Training',
-    videoCount: '17',
-    description: 'Structured range sessions with measurable benchmarks. The Super Sporting Practice series (6 parts), ladder drills, night practice, balance board training, skill-building progressions, and off-season protocols.',
-    accent: 'rose',
-    latest: 'Ongoing',
-    thumbnail: '/images/thumbnails/hold-point.jpg',
-    thumbAlt: 'Practice drills and structured training sessions',
-  },
-  {
-    title: 'Joe Fanizzi Series',
-    category: 'Guest Coaching',
-    videoCount: '12+',
-    description: 'Elite guest coaching from Joe Fanizzi — foundation, fundamentals, tower pair strategy, philosophy on rabbue and battue targets, pre-shot routine, report pair vs. true pair, and a complete goal-setting framework.',
-    accent: 'emerald',
-    latest: 'Updated with new sessions',
-    thumbnail: '/images/thumbnails/chandelle-2.jpg',
-    thumbAlt: 'Joe Fanizzi guest coaching series',
-  },
-  {
-    title: 'Quiet Dust & Signature Series',
-    category: 'Deep-Dive Content',
-    videoCount: '103',
-    description: 'The largest section of the library. Includes the Laser Method series, Mastering the Matrix (5 parts), the full Quiet Dust Shooting archive, World FITASC documentary, ShotKam compilation reels, Connection is Key, and dozens of individual technique deep-dives.',
-    accent: 'cyan',
-    latest: 'Ongoing',
-    thumbnail: '/images/thumbnails/anticipation.jpg',
-    thumbAlt: 'Quiet Dust Shooting and signature series deep-dive content',
-  },
-];
+// Fetch courses from the Platform API
+const apiUrl = 'https://api.pursuitshq.com/api/courses';
+let courses: any[] = [];
+let error: string | null = null;
 
+try {
+  const response = await fetch(apiUrl, {
+    headers: {
+      'BRAND_SLUG': 'sca',
+    },
+  });
+  
+  if (response.ok) {
+    const data = await response.json();
+    courses = data.courses || [];
+  } else {
+    error = `API returned ${response.status}`;
+    console.error('Failed to fetch courses:', error);
+  }
+} catch (e) {
+  error = e instanceof Error ? e.message : 'Unknown error';
+  console.error('Error fetching courses:', e);
+}
+
+// Calculate stats
+const totalLessons = courses.reduce((sum, c) => sum + (c.lesson_count || 0), 0);
+const totalModules = courses.reduce((sum, c) => sum + (c.module_count || 0), 0);
+
+// Accent colors for course cards
+const accentColors = ['amber', 'blue', 'emerald', 'violet', 'rose', 'cyan', 'orange'];
 const accentMap: Record<string, { bg: string; text: string; border: string }> = {
   amber: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20' },
   blue: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
@@ -85,31 +42,33 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
   orange: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20' },
 };
 
-const targetTypes = [
-  { name: 'Crossers & Loopers', count: 12 },
-  { name: 'Teal', count: 8 },
-  { name: 'Chandelles', count: 7 },
-  { name: 'Tower & Driven', count: 8 },
-  { name: 'Trap & Skeet', count: 7 },
-  { name: 'Incoming', count: 5 },
-  { name: 'Rabbit & Battue', count: 5 },
-  { name: 'Quartering', count: 4 },
-  { name: 'True Pairs', count: 4 },
-  { name: 'FITASC Targets', count: 4 },
-];
+// Map courses to display format with rotating accent colors
+const displayCourses = courses.map((course, idx) => ({
+  ...course,
+  accent: accentColors[idx % accentColors.length],
+  thumbnail: course.thumbnail_url || '/images/thumbnails/crossing-looper.jpg',
+  thumbAlt: course.title,
+  freePreviewCount: course.free_preview_count || 0,
+  membersOnlyCount: (course.lesson_count || 0) - (course.free_preview_count || 0),
+}));
 ---
 
 <BaseLayout
   title="Video Library | Sporting Clays Academy"
-  description="Browse 258 instructional videos across 7 categories from world champions Karen and Gebben Miles. Target breakdowns, fundamentals, competition analysis, mental game, and more. New lessons added weekly."
+  description="Browse instructional videos from world champions Karen and Gebben Miles. Target breakdowns, fundamentals, competition analysis, mental game, and more."
 >
 
   <!-- Header -->
   <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">258 Videos. New Lessons Weekly.</h1>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+        {totalLessons > 0 ? `${totalLessons} Videos` : 'Video Library'}. Expert Instruction.
+      </h1>
       <p class="text-slate-300 text-lg max-w-2xl mx-auto">
-        Seven categories covering every dimension of the sport — from target-by-target breakdowns to mental game, competition analysis, and structured drills.
+        {courses.length > 0 
+          ? `${courses.length} courses covering every dimension of the sport — from target-by-target breakdowns to mental game, competition analysis, and structured drills.`
+          : 'Comprehensive shooting instruction from world champions Karen and Gebben Miles.'
+        }
         One membership unlocks everything.
       </p>
     </div>
@@ -120,11 +79,11 @@ const targetTypes = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
-          <div class="text-2xl font-bold text-amber-500">258</div>
+          <div class="text-2xl font-bold text-amber-500">{totalLessons}</div>
           <div class="text-slate-400 text-xs mt-1">Videos in Library</div>
         </div>
         <div>
-          <div class="text-2xl font-bold text-amber-500">7</div>
+          <div class="text-2xl font-bold text-amber-500">{courses.length}</div>
           <div class="text-slate-400 text-xs mt-1">Content Categories</div>
         </div>
         <div>
@@ -132,101 +91,122 @@ const targetTypes = [
           <div class="text-slate-400 text-xs mt-1">New Releases</div>
         </div>
         <div>
-          <div class="text-2xl font-bold text-amber-500">4</div>
+          <div class="text-2xl font-bold text-amber-500">2</div>
           <div class="text-slate-400 text-xs mt-1">World-Class Instructors</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Series Grid -->
+  {error && (
+    <section class="py-8 bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-rose-500/10 border border-rose-500/20 rounded-xl p-4">
+          <p class="text-rose-400 text-sm">⚠️ Unable to load courses: {error}</p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Courses Grid -->
   <section class="py-12 sm:py-16 bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {series.map((s) => {
-          const colors = accentMap[s.accent] || accentMap.amber;
-          return (
-            <article class="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/70 transition-all duration-300 flex flex-col">
-              <div class="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden">
-                <img src={s.thumbnail} alt={s.thumbAlt} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-                <span class:list={['absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full border', colors.bg, colors.text, colors.border]}>
-                  {s.videoCount} videos
-                </span>
-              </div>
-
-              <div class="p-5 flex flex-col flex-1">
-                <p class:list={['text-xs font-semibold uppercase tracking-widest mb-1.5', colors.text]}>
-                  {s.category}
-                </p>
-                <h3 class="text-lg font-semibold text-white mb-2">{s.title}</h3>
-                <p class="text-slate-300 text-sm leading-relaxed mb-4 flex-1">{s.description}</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-slate-500 text-xs">{s.latest}</span>
-                  <span class="text-amber-500 text-sm font-medium">Browse →</span>
+      {displayCourses.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-slate-400">No courses available yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayCourses.map((course) => {
+            const colors = accentMap[course.accent] || accentMap.amber;
+            return (
+              <article class="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-950/70 transition-all duration-300 flex flex-col">
+                <div class="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden">
+                  <img 
+                    src={course.thumbnail} 
+                    alt={course.thumbAlt} 
+                    class="absolute inset-0 w-full h-full object-cover" 
+                    loading="lazy" 
+                  />
+                  <span class:list={[
+                    'absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full border',
+                    colors.bg,
+                    colors.text,
+                    colors.border
+                  ]}>
+                    {course.lesson_count || 0} videos
+                  </span>
+                  {course.freePreviewCount > 0 && (
+                    <span class="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      {course.freePreviewCount} Free Preview
+                    </span>
+                  )}
                 </div>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+
+                <div class="p-5 flex flex-col flex-1">
+                  <p class:list={[
+                    'text-xs font-semibold uppercase tracking-widest mb-1.5',
+                    colors.text
+                  ]}>
+                    {course.level ? course.level.charAt(0).toUpperCase() + course.level.slice(1) : 'All Levels'}
+                  </p>
+                  <h3 class="text-lg font-semibold text-white mb-2">{course.title}</h3>
+                  <p class="text-slate-300 text-sm leading-relaxed mb-4 flex-1">
+                    {course.description || 'Expert instruction from Karen and Gebben Miles.'}
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-slate-500 text-xs">
+                      {course.freePreviewCount > 0 
+                        ? `${course.freePreviewCount} free, ${course.membersOnlyCount} members-only`
+                        : `${course.lesson_count || 0} lessons`
+                      }
+                    </span>
+                    {course.membersOnlyCount > 0 ? (
+                      <span class="text-amber-500 text-sm font-medium flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        Subscribe to Watch
+                      </span>
+                    ) : (
+                      <span class="text-emerald-500 text-sm font-medium">Browse →</span>
+                    )}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      )}
     </div>
   </section>
 
-  <!-- Browse by Target Type -->
+  <!-- Browse by Level -->
   <section class="py-12 sm:py-16 bg-slate-900 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-8">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white">Browse by Target Type</h2>
-        <p class="text-slate-400 mt-2 text-sm">54 dedicated videos covering every presentation you'll face on course — members can filter the full library by target type.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">Browse by Skill Level</h2>
+        <p class="text-slate-400 mt-2 text-sm">Find courses matched to your experience level.</p>
       </div>
       <div class="flex flex-wrap gap-3">
-        {targetTypes.map((t) => (
-          <div class="flex items-center gap-2.5 bg-slate-800 border border-slate-700 hover:border-amber-500/40 hover:bg-slate-750 rounded-xl px-4 py-3 transition-all duration-200 cursor-default group">
-            <span class="text-white font-medium text-sm group-hover:text-amber-400 transition-colors">{t.name}</span>
-            <span class="bg-slate-700 text-amber-500 text-xs font-bold px-2 py-0.5 rounded-full">{t.count}</span>
-          </div>
-        ))}
-        <div class="flex items-center gap-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-3">
-          <span class="text-amber-400 font-medium text-sm">+ more inside</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Recent Releases -->
-  <section class="py-12 sm:py-16 bg-slate-950">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8">Latest Releases</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {[
-          { title: '2026 Jack Links Cup Champion: Gebben Miles', series: 'Competition & Course', duration: '18:24', thumbnail: '/images/thumbnails/chandelle-angle.jpg', thumbAlt: 'Gebben Miles the day after winning the 2026 Jack Links Cup' },
-          { title: 'Low Rib vs High Rib', series: 'Target Breakdowns', duration: '12:37', thumbnail: '/images/thumbnails/tricky-pair.jpg', thumbAlt: 'Gebben and Karen compare low rib vs high rib on the Blaser FBX' },
-          { title: 'Why Blaser FBX?', series: 'Target Breakdowns', duration: '15:02', thumbnail: '/images/thumbnails/blaser-fbx.jpg', thumbAlt: 'Gebben and Karen explain the switch from Krieghoff to Blaser FBX' },
-          { title: 'Season Prep 2026', series: 'Practice & Drills', duration: '11:22', thumbnail: '/images/thumbnails/season-prep.jpg', thumbAlt: 'Gebben and Karen share 2026 season preparations' },
-        ].map((ep) => (
-          <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:-translate-y-1 transition-all duration-300">
-            <div class="aspect-video relative overflow-hidden">
-              <img src={ep.thumbnail} alt={ep.thumbAlt} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              <button class="absolute inset-0 flex items-center justify-center">
-                <div class="w-12 h-12 rounded-full bg-amber-500/80 flex items-center justify-center">
-                  <svg class="w-5 h-5 ml-0.5 text-slate-950" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                </div>
-              </button>
-              <span class="absolute bottom-2 right-2 text-xs text-white bg-black/60 px-2 py-0.5 rounded">{ep.duration}</span>
+        {['beginner', 'intermediate', 'advanced', 'all'].map((level) => {
+          const count = courses.filter(c => c.level === level).length;
+          return count > 0 ? (
+            <div class="flex items-center gap-2.5 bg-slate-800 border border-slate-700 hover:border-amber-500/40 hover:bg-slate-750 rounded-xl px-4 py-3 transition-all duration-200 cursor-default group">
+              <span class="text-white font-medium text-sm group-hover:text-amber-400 transition-colors">
+                {level.charAt(0).toUpperCase() + level.slice(1)}
+              </span>
+              <span class="bg-slate-700 text-amber-500 text-xs font-bold px-2 py-0.5 rounded-full">{count}</span>
             </div>
-            <div class="p-4">
-              <p class="text-amber-500 text-xs font-medium mb-1">{ep.series}</p>
-              <h4 class="text-white text-sm font-medium leading-snug">{ep.title}</h4>
-            </div>
-          </div>
-        ))}
+          ) : null;
+        })}
       </div>
     </div>
   </section>
 
   <CTASection
     headline="Get Access to the Full Library"
-    subtext="One membership unlocks all 258 videos, every category, and every new episode the moment it drops."
+    subtext={`One membership unlocks all ${totalLessons} videos, every course, and every new episode the moment it drops.`}
     ctaText="View Membership Plans"
     ctaHref="/pricing"
   />
