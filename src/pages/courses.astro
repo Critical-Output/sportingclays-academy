@@ -40,14 +40,20 @@ const accentMap: Record<string, { bg: string; text: string; border: string }> = 
 };
 
 // Map courses to display format with rotating accent colors
-const displayCourses = courses.map((course, idx) => ({
-  ...course,
-  accent: accentColors[idx % accentColors.length],
-  thumbnail: course.thumbnail_url || '/images/thumbnails/crossing-looper.jpg',
-  thumbAlt: course.title,
-  freePreviewCount: course.free_preview_count || 0,
-  membersOnlyCount: (course.lesson_count || 0) - (course.free_preview_count || 0),
-}));
+const displayCourses = courses.map((course, idx) => {
+  const meta = course.metadata || {};
+  const videoCount = meta.video_count || course.lesson_count || 0;
+  const accentKey = meta.accent || Object.keys(accentColors)[idx % Object.keys(accentColors).length];
+  return {
+    ...course,
+    accent: (accentColors as any)[accentKey] || accentColors[Object.keys(accentColors)[idx % Object.keys(accentColors).length] as keyof typeof accentColors],
+    thumbnail: meta.thumbnail || course.thumbnail_url || '/images/thumbnails/crossing-looper.jpg',
+    thumbAlt: course.title,
+    lesson_count: videoCount,
+    freePreviewCount: course.free_preview_count || 0,
+    membersOnlyCount: videoCount - (course.free_preview_count || 0),
+  };
+});
 ---
 
 <BaseLayout
