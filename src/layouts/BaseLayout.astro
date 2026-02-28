@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import AuthModal from '../components/AuthModal.astro';
 
 interface Props {
   title: string;
@@ -79,6 +80,34 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sporting
       <slot />
     </main>
     <Footer />
+    <AuthModal />
+
+    <script>
+      import { supabase, signOut } from '../lib/supabase';
+
+      async function updateAuthUI() {
+        const { data: { session } } = await supabase.auth.getSession();
+        const signInBtn = document.getElementById('header-signin-btn');
+        const userMenu = document.getElementById('header-user-menu');
+        const userEmail = document.getElementById('header-user-email');
+
+        if (session?.user) {
+          if (signInBtn) signInBtn.classList.add('hidden');
+          if (userMenu) userMenu.classList.remove('hidden');
+          if (userEmail) userEmail.textContent = session.user.email || 'Member';
+        } else {
+          if (signInBtn) signInBtn.classList.remove('hidden');
+          if (userMenu) userMenu.classList.add('hidden');
+        }
+      }
+
+      updateAuthUI();
+
+      document.getElementById('header-signout-btn')?.addEventListener('click', async () => {
+        await signOut();
+        window.location.reload();
+      });
+    </script>
 
     <script>
       // Scroll-triggered stat counter animations

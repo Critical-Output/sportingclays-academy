@@ -1,15 +1,11 @@
 plugins = []
-headers = []
 redirects = []
 
-[functions]
-
-[functions."*"]
-
 [build]
+edge_functions = "/Volumes/Crucial X10/pcc-projects/canonical/projects/sportingclays-academy/netlify/edge-functions"
 publish = "/Volumes/Crucial X10/pcc-projects/canonical/projects/sportingclays-academy/dist"
-publishOrigin = "ui"
-commandOrigin = "ui"
+publishOrigin = "config"
+commandOrigin = "config"
 command = "npm run build"
 
 [build.environment]
@@ -25,3 +21,17 @@ command = "npm run build"
 [build.processing.js]
 
 [build.services]
+
+[[edge_functions]]
+path = "/*"
+function = "auth"
+
+[functions]
+
+[functions."*"]
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Robots-Tag = "noindex, nofollow"

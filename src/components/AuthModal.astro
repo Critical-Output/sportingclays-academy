@@ -1,0 +1,205 @@
+---
+// AuthModal.astro - Supabase Auth Modal
+---
+
+<div id="auth-modal" class="fixed inset-0 z-50 hidden" aria-modal="true" role="dialog">
+  <!-- Backdrop -->
+  <div id="auth-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+  <!-- Modal panel -->
+  <div class="relative flex min-h-full items-center justify-center p-4">
+    <div class="relative bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-8">
+
+      <!-- Close button -->
+      <button id="auth-close" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Header -->
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-white">Member Access</h2>
+        <p class="text-slate-400 text-sm mt-1">Sporting Clays Academy</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-slate-700 mb-6">
+        <button id="tab-signin" class="auth-tab flex-1 py-2 text-sm font-semibold text-amber-500 border-b-2 border-amber-500">
+          Sign In
+        </button>
+        <button id="tab-signup" class="auth-tab flex-1 py-2 text-sm font-semibold text-slate-400 border-b-2 border-transparent">
+          Create Account
+        </button>
+      </div>
+
+      <!-- Error message -->
+      <div id="auth-error" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm"></div>
+
+      <!-- Success message -->
+      <div id="auth-success" class="hidden mb-4 p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm"></div>
+
+      <!-- Sign In Form -->
+      <form id="form-signin" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Email</label>
+          <input id="signin-email" type="email" required autocomplete="email"
+            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+            placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Password</label>
+          <input id="signin-password" type="password" required autocomplete="current-password"
+            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+            placeholder="••••••••" />
+        </div>
+        <button type="submit" id="signin-submit"
+          class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-lg transition-colors">
+          Sign In
+        </button>
+        <button type="button" id="magic-link-btn"
+          class="w-full border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white font-medium py-3 rounded-lg transition-colors text-sm">
+          Send Magic Link Instead
+        </button>
+      </form>
+
+      <!-- Sign Up Form (hidden by default) -->
+      <form id="form-signup" class="space-y-4 hidden">
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Email</label>
+          <input id="signup-email" type="email" required autocomplete="email"
+            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+            placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-300 mb-1">Password</label>
+          <input id="signup-password" type="password" required autocomplete="new-password" minlength="8"
+            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors"
+            placeholder="Min. 8 characters" />
+        </div>
+        <button type="submit" id="signup-submit"
+          class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-lg transition-colors">
+          Create Account
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script>
+import { supabase } from '../lib/supabase';
+
+// Modal open/close
+const modal = document.getElementById('auth-modal')!;
+const backdrop = document.getElementById('auth-backdrop')!;
+const closeBtn = document.getElementById('auth-close')!;
+
+function openModal() {
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// Expose globally so Header can call it
+(window as any).openAuthModal = openModal;
+
+closeBtn.addEventListener('click', closeModal);
+backdrop.addEventListener('click', closeModal);
+
+// Tab switching
+const tabSignin = document.getElementById('tab-signin')!;
+const tabSignup = document.getElementById('tab-signup')!;
+const formSignin = document.getElementById('form-signin')!;
+const formSignup = document.getElementById('form-signup')!;
+
+tabSignin.addEventListener('click', () => {
+  tabSignin.className = 'auth-tab flex-1 py-2 text-sm font-semibold text-amber-500 border-b-2 border-amber-500';
+  tabSignup.className = 'auth-tab flex-1 py-2 text-sm font-semibold text-slate-400 border-b-2 border-transparent';
+  formSignin.classList.remove('hidden');
+  formSignup.classList.add('hidden');
+});
+
+tabSignup.addEventListener('click', () => {
+  tabSignup.className = 'auth-tab flex-1 py-2 text-sm font-semibold text-amber-500 border-b-2 border-amber-500';
+  tabSignin.className = 'auth-tab flex-1 py-2 text-sm font-semibold text-slate-400 border-b-2 border-transparent';
+  formSignup.classList.remove('hidden');
+  formSignin.classList.add('hidden');
+});
+
+// Error/success display
+const errorEl = document.getElementById('auth-error')!;
+const successEl = document.getElementById('auth-success')!;
+
+function showError(msg: string) {
+  errorEl.textContent = msg;
+  errorEl.classList.remove('hidden');
+  successEl.classList.add('hidden');
+}
+
+function showSuccess(msg: string) {
+  successEl.textContent = msg;
+  successEl.classList.remove('hidden');
+  errorEl.classList.add('hidden');
+}
+
+function clearMessages() {
+  errorEl.classList.add('hidden');
+  successEl.classList.add('hidden');
+}
+
+// Sign In
+formSignin.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearMessages();
+  const email = (document.getElementById('signin-email') as HTMLInputElement).value;
+  const password = (document.getElementById('signin-password') as HTMLInputElement).value;
+  const btn = document.getElementById('signin-submit') as HTMLButtonElement;
+  btn.textContent = 'Signing in...';
+  btn.disabled = true;
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) {
+    showError(error.message);
+    btn.textContent = 'Sign In';
+    btn.disabled = false;
+  } else {
+    window.location.reload();
+  }
+});
+
+// Magic Link
+document.getElementById('magic-link-btn')!.addEventListener('click', async () => {
+  clearMessages();
+  const email = (document.getElementById('signin-email') as HTMLInputElement).value;
+  if (!email) {
+    showError('Enter your email first.');
+    return;
+  }
+  const { error } = await supabase.auth.signInWithOtp({ email });
+  if (error) showError(error.message);
+  else showSuccess('Magic link sent! Check your inbox.');
+});
+
+// Sign Up
+formSignup.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearMessages();
+  const email = (document.getElementById('signup-email') as HTMLInputElement).value;
+  const password = (document.getElementById('signup-password') as HTMLInputElement).value;
+  const btn = document.getElementById('signup-submit') as HTMLButtonElement;
+  btn.textContent = 'Creating account...';
+  btn.disabled = true;
+  const { error } = await supabase.auth.signUp({ email, password });
+  if (error) {
+    showError(error.message);
+    btn.textContent = 'Create Account';
+    btn.disabled = false;
+  } else {
+    showSuccess('Account created! Check your email to confirm, then sign in.');
+  }
+});
+</script>

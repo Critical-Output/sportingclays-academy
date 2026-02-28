@@ -3,6 +3,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/courses', label: 'Video Library' },
   { href: '/about', label: 'Instructors' },
+  { href: '/bookings', label: 'Book a Lesson' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/free-lesson', label: 'Free Lesson' },
 ];
@@ -36,6 +37,38 @@ const navLinks = [
           {link.label}
         </a>
       ))}
+      <!-- Auth: Sign In button (shown when logged out) -->
+      <button
+        id="header-signin-btn"
+        onclick="(window as any).openAuthModal && (window as any).openAuthModal()"
+        class="text-sm text-slate-300 hover:text-white transition-colors"
+      >
+        Sign In
+      </button>
+      <!-- Auth: User menu (shown when logged in) -->
+      <div id="header-user-menu" class="hidden relative group">
+        <button class="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+          </svg>
+          <span id="header-user-email" class="max-w-[140px] truncate">Member</span>
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <!-- Dropdown -->
+        <div class="absolute right-0 top-full mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <a href="/account" class="block px-4 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 rounded-t-xl transition-colors">
+            My Account
+          </a>
+          <button
+            id="header-signout-btn"
+            class="w-full text-left px-4 py-3 text-sm text-slate-300 hover:text-white hover:bg-slate-800 rounded-b-xl transition-colors border-t border-slate-700/50"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
       <a
         href="/pricing"
         class="bg-gradient-to-br from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-lg shadow-md shadow-amber-500/40 hover:shadow-lg hover:shadow-amber-500/60 hover:-translate-y-0.5 transition-all duration-200"
@@ -76,6 +109,21 @@ const navLinks = [
       >
         Start Learning
       </a>
+
+      <!-- Mobile Auth -->
+      <button
+        id="mobile-signin-btn"
+        class="text-lg text-slate-300 hover:text-amber-400 transition-colors"
+        onclick="(window as any).openAuthModal && (window as any).openAuthModal(); document.getElementById('mobile-menu').style.display='none';"
+      >
+        Sign In
+      </button>
+      <button
+        id="mobile-signout-btn"
+        class="hidden text-lg text-slate-300 hover:text-amber-400 transition-colors"
+      >
+        Sign Out
+      </button>
 
       <div style="position:absolute; bottom:2rem; color:rgb(71 85 105); font-size:0.75rem; text-align:center; padding:0 2rem;">
         30-Day Money-Back Guarantee • Cancel Anytime
