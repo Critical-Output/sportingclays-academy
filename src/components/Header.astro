@@ -84,16 +84,17 @@ const navLinks = [
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <span id="ham-top" class="block w-6 h-0.5 bg-slate-300 transition-transform duration-300 origin-center"></span>
-      <span id="ham-mid" class="block w-6 h-0.5 bg-slate-300 transition-opacity duration-300"></span>
-      <span id="ham-bot" class="block w-6 h-0.5 bg-slate-300 transition-transform duration-300 origin-center"></span>
+      <span class="block w-6 h-0.5 bg-slate-300 transition-all duration-300 origin-center" id="ham-top"></span>
+      <span class="block w-6 h-0.5 bg-slate-300 transition-all duration-300" id="ham-mid"></span>
+      <span class="block w-6 h-0.5 bg-slate-300 transition-all duration-300 origin-center" id="ham-bot"></span>
     </button>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu — hidden by default via Tailwind, not inline style -->
+    <!-- SCA has announcement bar (40px) + nav (64px) = 104px total header height -->
     <div
       id="mobile-menu"
-      class="md:hidden"
-      style="display:none; position:fixed; inset:104px 0 0 0; background:#020617; z-index:60; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:2.5rem; gap:1.5rem; border-top:1px solid rgb(30 41 59);"
+      class="md:hidden hidden fixed inset-x-0 bottom-0 bg-slate-950 z-[60] flex-col items-center justify-start pt-10 gap-6 border-t border-slate-800"
+      style="top: 104px;"
     >
       {navLinks.map(link => (
         <a
@@ -114,7 +115,7 @@ const navLinks = [
       <button
         id="mobile-signin-btn"
         class="text-lg text-slate-300 hover:text-amber-400 transition-colors"
-        onclick="(window as any).openAuthModal && (window as any).openAuthModal(); document.getElementById('mobile-menu').style.display='none';"
+        onclick="(window as any).openAuthModal && (window as any).openAuthModal(); document.getElementById('mobile-menu')?.classList.add('hidden'); document.getElementById('mobile-menu')?.classList.remove('flex');"
       >
         Sign In
       </button>
@@ -125,7 +126,7 @@ const navLinks = [
         Sign Out
       </button>
 
-      <div style="position:absolute; bottom:2rem; color:rgb(71 85 105); font-size:0.75rem; text-align:center; padding:0 2rem;">
+      <div class="absolute bottom-8 text-slate-500 text-xs text-center px-8">
         30-Day Money-Back Guarantee • Cancel Anytime
       </div>
     </div>
@@ -137,29 +138,36 @@ const navLinks = [
     const hamTop = document.getElementById('ham-top');
     const hamMid = document.getElementById('ham-mid');
     const hamBot = document.getElementById('ham-bot');
-    let open = false;
 
     btn?.addEventListener('click', () => {
-      open = !open;
-      if (menu) {
-        menu.style.display = open ? 'flex' : 'none';
+      const isOpen = !menu?.classList.contains('hidden');
+
+      if (isOpen) {
+        menu?.classList.add('hidden');
+        menu?.classList.remove('flex');
+        btn?.setAttribute('aria-expanded', 'false');
+        hamTop?.classList.remove('rotate-45', 'translate-y-2');
+        hamMid?.classList.remove('opacity-0');
+        hamBot?.classList.remove('-rotate-45', '-translate-y-2');
+      } else {
+        menu?.classList.remove('hidden');
+        menu?.classList.add('flex');
+        btn?.setAttribute('aria-expanded', 'true');
+        hamTop?.classList.add('rotate-45', 'translate-y-2');
+        hamMid?.classList.add('opacity-0');
+        hamBot?.classList.add('-rotate-45', '-translate-y-2');
       }
-      btn?.setAttribute('aria-expanded', String(open));
-      // Animate to X
-      if (hamTop) hamTop.style.transform = open ? 'translateY(8px) rotate(45deg)' : '';
-      if (hamMid) hamMid.style.opacity = open ? '0' : '1';
-      if (hamBot) hamBot.style.transform = open ? 'translateY(-8px) rotate(-45deg)' : '';
     });
 
-    // Close on nav link click
+    // Close menu on nav link click
     menu?.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        open = false;
-        if (menu) menu.style.display = 'none';
+        menu?.classList.add('hidden');
+        menu?.classList.remove('flex');
         btn?.setAttribute('aria-expanded', 'false');
-        if (hamTop) hamTop.style.transform = '';
-        if (hamMid) hamMid.style.opacity = '1';
-        if (hamBot) hamBot.style.transform = '';
+        hamTop?.classList.remove('rotate-45', 'translate-y-2');
+        hamMid?.classList.remove('opacity-0');
+        hamBot?.classList.remove('-rotate-45', '-translate-y-2');
       });
     });
   </script>
