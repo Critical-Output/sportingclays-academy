@@ -2,17 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
 
-// Fetch courses from the Platform API
-const apiUrl = 'https://api.pursuitshq.com/api/courses';
+// Fetch courses from the public Platform API catalog endpoint (no auth required)
+const SCA_BRAND_ID = '22222222-0000-0000-0000-000000000001';
+const apiUrl = `https://api.pursuitshq.com/api/courses/catalog?brand_id=${SCA_BRAND_ID}`;
 let courses: any[] = [];
 let error: string | null = null;
 
 try {
-  const response = await fetch(apiUrl, {
-    headers: {
-      'BRAND_SLUG': 'sca',
-    },
-  });
+  const response = await fetch(apiUrl);
   
   if (response.ok) {
     const data = await response.json();
